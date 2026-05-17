@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Margin — A weekend newsletter from Melbourne's inner west</title>
+  <link rel="stylesheet" href="assets/colors_and_type.css" />
+  <script src="image-slot.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; scroll-behavior: smooth; }
+
+    :root {
+      --paper: #FBF9F4;
+      --paper-deep: #F4F2EC;
+      --ink: #24201E;
+      --ink-soft: #3D3835;
+      --stone: #7A7673;
+      --rule: #DDD8CD;
+      --rule-soft: #E6E4DD;
+      --gold: #C49A45;
+      --gold-deep: #A8842D;
+    }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Switzer', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.5;
+    }
+
+    a { color: inherit; }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    /* ─────── NAV ─────── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(251, 249, 244, 0.92);
+      backdrop-filter: saturate(140%) blur(8px);
+      -webkit-backdrop-filter: saturate(140%) blur(8px);
+      border-bottom: 1px solid var(--rule);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+    }
+    .wordmark {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--ink);
+    }
+    .wordmark svg { width: 22px; height: 22px; flex-shrink: 0; }
+    .wordmark-text {
+      font-family: 'Lastik', Georgia, serif;
+      font-style: italic;
+      font-size: 22px;
+      letter-spacing: -0.01em;
+      line-height: 1;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .nav-link {
+      font-size: 14px;
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+      transition: color 200ms;
+    }
+    .nav-link:hover { color: var(--gold-deep); }
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: -6px;
+      height: 1px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 200ms;
+    }
+    .nav-link:hover::after { transform: scaleX(1); }
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--ink);
+      color: var(--paper);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      padding: 10px 18px;
+      border-radius: 3px;
+      transition: background 200ms;
+    }
+    .nav-cta:hover { background: var(--gold-deep); }
+    .nav-cta::after {
+      content: "→";
+      font-size: 13px;
+      transition: transform 200ms;
+    }
+    .nav-cta:hover::after { transform: translateX(2px); }
+
+    /* ─────── HERO ─────── */
+    .hero {
+      padding: 96px 0 80px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 80px;
+      align-items: end;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      font-weight: 600;
+      margin-bottom: 28px;
+    }
+    .hero-eyebrow::before {
+      content: "";
+      width: 28px; height: 1px;
+      background: var(--gold);
+    }
+    .hero-title {
+      font-family: 'Lastik', Georgia, serif;
+      font-size: clamp(48px, 7vw, 88px);
+      line-height: 0.98;
+      letter-spacing: -0.025em;
+      font-weight: 400;
+      color: var(--ink);
+      margin: 0 0 28px;
+      text-wrap: balance;
+      max-width: 12ch;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--ink-soft);
+    }
+    .hero-dek {
+      font-size: 19px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      max-width: 46ch;
+      margin: 0 0 36px;
+    }
+
+    .signup {
+      display: flex;
+      gap: 8px;
+      max-width: 480px;
+    }
+    .signup input {
+      flex: 1;
+      background: var(--paper);
+      border: 1px solid var(--ink);
+      color: var(--ink);
+      padding: 14px 16px;
+      border-radius: 3px;
+      font-family: inherit;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 200ms;
+    }
+    .signup input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(196,154,69,0.12); }
+    .signup input::placeholder { color: var(--stone); }
+    .signup-btn {
+      background: var(--ink);
+      color: var(--paper);
+      border: 1px solid var(--ink);
+      padding: 14px 26px;
+      border-radius: 3px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      transition: background 200ms, border-color 200ms;
+    }
+    .signup-btn:hover { background: var(--gold-deep); border-color: var(--gold-deep); }
+
+    .hero-meta {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13px;
+      color: var(--stone);
+    }
+    .hero-meta .avatars {
+      display: flex;
+      margin-right: 4px;
+    }
+    .hero-meta .avatar {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      border: 2px solid var(--paper);
+      margin-left: -6px;
+      background: var(--paper-deep);
+    }
+    .hero-meta .avatar:nth-child(1) { background: #D4C39A; margin-left: 0; }
+    .hero-meta .avatar:nth-child(2) { background: #A8C2B0; }
+    .hero-meta .avatar:nth-child(3) { background: #C49A45; }
+    .hero-meta .avatar:nth-child(4) { background: #7A7673; }
+    .hero-meta strong { color: var(--ink); font-weight: 600; }
+
+    /* hero side card — sample of what an issue looks like */
+    .hero-card {
+      background: var(--paper-deep);
+      border-radius: 3px;
+      padding: 32px 28px;
+      position: relative;
+    }
+    .hero-card-eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+    .hero-card-issue {
+      font-family: 'Lastik', Georgia, serif;
+      font-style: italic;
+      font-size: 14px;
+      color: var(--stone);
+      margin-bottom: 8px;
+    }
+    .hero-card-title {
+      font-family: 'Lastik', Georgia, serif;
+      font-size: 22px;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      font-weight: 400;
+      color: var(--ink);
+      margin: 0 0 16px;
+      text-wrap: balance;
+    }
+    .hero-card-summary {
+      list-style: none;
+      margin: 0 0 18px;
+      padding: 0;
+    }
+    .hero-card-summary li {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--rule);
+      font-size: 13px;
+      color: var(--ink);
+      display: grid;
+      grid-template-columns: 18px 1fr;
+      gap: 10px;
+    }
+    .hero-card-summary li:last-child { border-bottom: none; }
+    .hero-card-summary .n {
+      font-family: 'Lastik', Georgia, serif;
+      font-style: italic;
+      color: var(--gold-deep);
+      font-size: 13px;
+    }
+    .hero-card-link {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: 2px;
+      transition: color 200ms;
+    }
+    .hero-card-link:hover { color: var(--gold-deep); }
+
+    /* ─────── SECTION HEAD ─────── */
+    .section {
+      padding: 88px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 48px;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .section-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--stone);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Lastik', Georgia, serif;
+      font-size: clamp(32px, 4vw, 44px);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      font-weight: 400;
+      color: var(--ink);
+      margin: 0;
+      max-width: 18ch;
+      text-wrap: balance;
+    }
+    .section-title em { font-style: italic; }
+    .section-head-link {
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: 3px;
+    }
+    .section-head-link:hover { color: var(--gold-deep); }
+
+    /* ─────── LATEST (featured) ─────── */
+    .latest-card {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+    .latest-image image-slot {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background: var(--paper-deep);
+      border: 1px solid var(--rule);
+    }
+    .latest-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--stone);
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+    .latest-meta .dot {
+      display: inline-block;
+      width: 5px; height: 5px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+    .latest-meta strong { color: var(--ink); font-weight: 600; }
+    .latest-title {
+      font-family: 'Lastik', Georgia, serif;
+      font-size: 36px;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      font-weight: 400;
+      margin: 0 0 18px;
+      max-width: 18ch;
+      text-wrap: balance;
+    }
+    .latest-title em { font-style: italic; color: var(--ink-soft); }
+    .latest-dek {
+      font-size: 17px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      margin: 0 0 28px;
+      max-width: 42ch;
+    }
+    .latest-read {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--ink);
+      color: var(--paper);
+      text-decoration: none;
+      padding: 12px 22px;
+      border-radius: 3px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      transition: background 200ms;
+    }
+    .latest-read::after { content: "→"; transition: transform 200ms; }
+    .latest-read:hover { background: var(--gold-deep); }
+    .latest-read:hover::after { transform: translateX(2px); }
+
+    /* ─────── ARCHIVE GRID ─────── */
+    .archive-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px 40px;
+    }
+    .issue-card {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .issue-card:hover { transform: translateY(-3px); }
+    .issue-tile {
+      aspect-ratio: 4 / 3;
+      border-radius: 2px;
+      margin-bottom: 18px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20px;
+      transition: filter 200ms;
+    }
+    .issue-card:hover .issue-tile { filter: brightness(1.03); }
+    .issue-tile--oatmeal { background: var(--paper-deep); color: var(--ink); }
+    .issue-tile--ink { background: var(--ink); color: var(--paper); }
+    .issue-tile--gold { background: var(--gold); color: var(--ink); }
+    .issue-tile--paper {
+      background: var(--paper);
+      color: var(--ink);
+      border: 1px solid var(--rule);
+    }
+    .issue-tile-num {
+      font-family: 'Lastik', Georgia, serif;
+      font-style: italic;
+      font-size: 56px;
+      line-height: 1;
+      align-self: flex-start;
+      letter-spacing: -0.02em;
+    }
+    .issue-tile--ink .issue-tile-num { color: var(--gold); }
+    .issue-tile--gold .issue-tile-num { color: var(--ink); }
+    .issue-tile-suburb {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 600;
+      align-self: flex-end;
+      opacity: 0.7;
+    }
+    .issue-tile--ink .issue-tile-suburb { color: var(--paper); opacity: 0.6; }
+    .issue-tile-mark {
+      position: absolute;
+      bottom: 16px;
+      left: 20px;
+      width: 22px; height: 22px;
+      opacity: 0.5;
+    }
+    .issue-tile--ink .issue-tile-mark { color: var(--gold); opacity: 0.8; }
+    .issue-tile--gold .issue-tile-mark { color: var(--ink); opacity: 0.6; }
+
+    .issue-card-meta {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--stone);
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+    .issue-card-title {
+      font-family: 'Lastik', Georgia, serif;
+      font-size: 22px;
+      line-height: 1.18;
+      letter-spacing: -0.012em;
+      font-weight: 400;
+      color: var(--ink);
+      margin: 0 0 8px;
+      text-wrap: balance;
+    }
+    .issue-card-title em { font-style: italic; }
+    .issue-card-blurb {
+      font-size: 14px;
+      color: var(--stone);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* ─────── ABOUT (spread with marginalia) ─────── */
+    .about-spread {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 220px;
+      gap: 64px;
+      align-items: start;
+    }
+    .about-content h3 {
+      font-family: 'Lastik', Georgia, serif;
+      font-size: 28px;
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+      font-weight: 400;
+      margin: 0 0 18px;
+      max-width: 22ch;
+      text-wrap: balance;
+    }
+    .about-content h3 em { font-style: italic; }
+    .about-content p {
+      font-size: 17px;
+      line-height: 1.65;
+      color: var(--ink);
+      margin: 0 0 16px;
+      max-width: 52ch;
+    }
+    .about-content p:last-child { color: var(--ink-soft); }
+    .about-margin {
+      padding-top: 6px;
+      position: relative;
+    }
+    .about-margin::before {
+      content: "";
+      position: absolute;
+      top: 14px;
+      left: -32px;
+      width: 16px;
+      height: 1px;
+      background: var(--gold);
+    }
+    .about-margin-label {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--stone);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .about-margin-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .about-margin-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--rule);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .about-margin-list li:last-child { border-bottom: none; }
+    .about-margin-list .k {
+      display: block;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--stone);
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+    .about-margin-list .v { color: var(--ink); }
+
+    /* ─────── FINAL CTA (dark) ─────── */
+    .final-cta {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 96px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .final-cta-mark {
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 260px;
+      height: 260px;
+      opacity: 0.06;
+      color: var(--gold);
+    }
+    .final-cta-inner {
+      max-width: 720px;
+      position: relative;
+    }
+    .final-cta-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+    .final-cta-title {
+      font-family: 'Lastik', Georgia, serif;
+      font-size: clamp(36px, 5vw, 56px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      font-weight: 400;
+      color: var(--paper);
+      margin: 0 0 20px;
+      max-width: 16ch;
+      text-wrap: balance;
+    }
+    .final-cta-title em { font-style: italic; }
+    .final-cta-dek {
+      font-size: 18px;
+      line-height: 1.55;
+      color: rgba(251, 249, 244, 0.72);
+      max-width: 50ch;
+      margin: 0 0 36px;
+    }
+    .final-cta-form {
+      display: flex;
+      gap: 8px;
+      max-width: 500px;
+    }
+    .final-cta-form input {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(251, 249, 244, 0.25);
+      color: var(--paper);
+      padding: 14px 16px;
+      border-radius: 3px;
+      font-family: inherit;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 200ms, background 200ms;
+    }
+    .final-cta-form input:focus {
+      border-color: var(--gold);
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .final-cta-form input::placeholder { color: rgba(251, 249, 244, 0.4); }
+    .final-cta-form button {
+      background: var(--gold);
+      color: var(--ink);
+      border: 1px solid var(--gold);
+      padding: 14px 28px;
+      border-radius: 3px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: background 200ms, color 200ms;
+    }
+    .final-cta-form button:hover { background: var(--paper); }
+    .final-cta-fineprint {
+      font-size: 13px;
+      color: rgba(251, 249, 244, 0.45);
+      margin-top: 16px;
+    }
+
+    /* ─────── FOOTER ─────── */
+    .footer {
+      padding: 64px 0 40px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px dotted var(--rule);
+    }
+    .footer-about p {
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--stone);
+      margin: 12px 0 0;
+      max-width: 36ch;
+    }
+    .footer h4 {
+      font-family: 'Lastik', Georgia, serif;
+      font-style: italic;
+      font-size: 15px;
+      color: var(--ink);
+      margin: 0 0 14px;
+      font-weight: 400;
+    }
+    .footer a {
+      display: block;
+      font-size: 13px;
+      color: var(--ink);
+      text-decoration: none;
+      padding: 4px 0;
+      transition: color 200ms;
+    }
+    .footer a:hover { color: var(--gold-deep); }
+    .footer-meta {
+      margin-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--stone);
+      font-weight: 500;
+    }
+
+    /* ─────── RESPONSIVE ─────── */
+    @media (max-width: 880px) {
+      .container { padding: 0 24px; }
+      .hero { padding: 56px 0 56px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+      .hero-card { order: 2; }
+      .signup { flex-direction: column; max-width: 100%; }
+      .signup-btn { width: 100%; }
+      .section { padding: 56px 0; }
+      .section-head { flex-direction: column; align-items: flex-start; margin-bottom: 32px; }
+      .latest-card { grid-template-columns: 1fr; gap: 28px; }
+      .archive-grid { grid-template-columns: 1fr; gap: 32px; }
+      .about-spread { grid-template-columns: 1fr; gap: 24px; }
+      .about-margin::before { display: none; }
+      .final-cta { padding: 64px 0; }
+      .final-cta-form { flex-direction: column; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+      .footer-meta { flex-direction: column; gap: 12px; align-items: flex-start; }
+      .nav-links { gap: 16px; }
+      .nav-link { display: none; }
+      .nav-link.always-show { display: inline-block; }
+    }
+
+    @media (max-width: 600px) {
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Logomark: editor's margin-mark -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="margin-mark" viewBox="0 0 32 32">
+      <line x1="6" y1="4" x2="6" y2="28" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+      <circle cx="6" cy="7" r="1.6" fill="currentColor" />
+      <text x="11" y="23" font-family="Lastik, Georgia, serif" font-style="italic" font-size="18" fill="currentColor" font-weight="400">m</text>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ═══════════ NAV ═══════════ -->
+<nav class="nav" data-screen-label="Nav">
+  <div class="container nav-inner">
+    <a href="#" class="wordmark" aria-label="The Margin">
+      <svg aria-hidden="true"><use href="#margin-mark"></use></svg>
+      <span class="wordmark-text">the margin</span>
+    </a>
+    <div class="nav-links">
+      <a href="#latest" class="nav-link">Latest</a>
+      <a href="#archive" class="nav-link">Archive</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#subscribe" class="nav-cta always-show">Subscribe</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero" data-screen-label="Hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-eyebrow">A weekend newsletter from Melbourne's inner west</div>
+        <h1 class="hero-title">Weekends, <em>found in the margins.</em></h1>
+        <p class="hero-dek">
+          One Saturday morning, one carefully chosen weekend. A botanic garden made for slow mornings, a burger that doesn't ask you to compromise, a printmaking workshop the kids will remember. Curated, never exhaustive.
+        </p>
+        <form class="signup" onsubmit="event.preventDefault();">
+          <input type="email" placeholder="your.name@email.com" aria-label="Email address" />
+          <button class="signup-btn" type="submit">Subscribe</button>
+        </form>
+        <div class="hero-meta">
+          <div class="avatars">
+            <span class="avatar" aria-hidden="true"></span>
+            <span class="avatar" aria-hidden="true"></span>
+            <span class="avatar" aria-hidden="true"></span>
+            <span class="avatar" aria-hidden="true"></span>
+          </div>
+          <span><strong>2,400</strong> parents reading every Saturday</span>
+        </div>
+      </div>
+
+      <!-- mini issue card -->
+      <aside class="hero-card" aria-label="What's in this week's issue">
+        <div class="hero-card-eyebrow">In this week's issue</div>
+        <div class="hero-card-issue">Issue No. 04 · 17 May 2026</div>
+        <h3 class="hero-card-title">Quiet corners of the weekend, found in the margins.</h3>
+        <ul class="hero-card-summary">
+          <li><span class="n">i.</span><span>Williamstown Botanic Gardens, at eight</span></li>
+          <li><span class="n">ii.</span><span>Good Good Burgers, Yarraville</span></li>
+          <li><span class="n">iii.</span><span>A printmaking workshop, Abbotsford</span></li>
+        </ul>
+        <a href="The Margin - Newsletter Template.html" class="hero-card-link">Read this issue</a>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ LATEST FEATURED ═══════════ -->
+<section class="section" id="latest" data-screen-label="Latest">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow">This week</div>
+        <h2 class="section-title">The latest issue, <em>fresh on Saturday morning.</em></h2>
+      </div>
+      <a href="#archive" class="section-head-link">See the archive →</a>
+    </div>
+
+    <article class="latest-card">
+      <figure class="latest-image" style="margin:0;">
+        <image-slot
+          id="latest-issue-image"
+          placeholder="Drop the cover photo for this week's issue."
+          shape="rect"
+        ></image-slot>
+      </figure>
+      <div>
+        <div class="latest-meta">
+          <span class="dot"></span>
+          <span>Issue <strong>No. 04</strong></span>
+          <span>·</span>
+          <span>17 May 2026</span>
+          <span>·</span>
+          <span>The Inner West Edit</span>
+        </div>
+        <h3 class="latest-title">Quiet corners of the weekend, <em>found in the margins.</em></h3>
+        <p class="latest-dek">
+          This week: a botanic garden made for slow mornings, a burger that doesn't ask you to compromise, and one printmaking workshop in Abbotsford that's worth the drive across the river.
+        </p>
+        <a href="The Margin - Newsletter Template.html" class="latest-read">Read this issue</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ═══════════ ARCHIVE ═══════════ -->
+<section class="section" id="archive" data-screen-label="Archive">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow">The archive</div>
+        <h2 class="section-title">Every issue we've sent. <em>Four so far.</em></h2>
+      </div>
+      <a href="#subscribe" class="section-head-link">Subscribe to read every issue →</a>
+    </div>
+
+    <div class="archive-grid">
+      <!-- Issue 04 (current) -->
+      <a href="The Margin - Newsletter Template.html" class="issue-card">
+        <div class="issue-tile issue-tile--oatmeal">
+          <span class="issue-tile-num">04</span>
+          <span class="issue-tile-suburb">Williamstown · Yarraville</span>
+          <svg class="issue-tile-mark" aria-hidden="true"><use href="#margin-mark"></use></svg>
+        </div>
+        <div class="issue-card-meta">17 May 2026 · This week</div>
+        <h3 class="issue-card-title">The Inner West Edit</h3>
+        <p class="issue-card-blurb">A botanic garden, a burger, and a workshop worth crossing the river for.</p>
+      </a>
+
+      <!-- Issue 03 -->
+      <a href="#" class="issue-card">
+        <div class="issue-tile issue-tile--ink">
+          <span class="issue-tile-num">03</span>
+          <span class="issue-tile-suburb">Abbotsford · Collingwood</span>
+          <svg class="issue-tile-mark" aria-hidden="true"><use href="#margin-mark"></use></svg>
+        </div>
+        <div class="issue-card-meta">10 May 2026</div>
+        <h3 class="issue-card-title">The Yarra Loop</h3>
+        <p class="issue-card-blurb">A river walk that ends with a flat white, and where to take the children when it rains.</p>
+      </a>
+
+      <!-- Issue 02 -->
+      <a href="#" class="issue-card">
+        <div class="issue-tile issue-tile--gold">
+          <span class="issue-tile-num">02</span>
+          <span class="issue-tile-suburb">Brunswick · Northcote</span>
+          <svg class="issue-tile-mark" aria-hidden="true"><use href="#margin-mark"></use></svg>
+        </div>
+        <div class="issue-card-meta">3 May 2026</div>
+        <h3 class="issue-card-title">North Side Mornings</h3>
+        <p class="issue-card-blurb">An oat-milk cortado, a record shop, and one bakery that opens before the sun.</p>
+      </a>
+
+      <!-- Issue 01 -->
+      <a href="#" class="issue-card">
+        <div class="issue-tile issue-tile--paper">
+          <span class="issue-tile-num">01</span>
+          <span class="issue-tile-suburb">Inner West</span>
+          <svg class="issue-tile-mark" aria-hidden="true"><use href="#margin-mark"></use></svg>
+        </div>
+        <div class="issue-card-meta">26 April 2026 · First issue</div>
+        <h3 class="issue-card-title">The First Saturday</h3>
+        <p class="issue-card-blurb">Why we started The Margin, and the three places we keep coming back to.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ ABOUT ═══════════ -->
+<section class="section" id="about" data-screen-label="About">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow">About</div>
+        <h2 class="section-title">A small, honest list, <em>made on Saturdays.</em></h2>
+      </div>
+    </div>
+
+    <div class="about-spread">
+      <div class="about-content">
+        <h3>We started The Margin because we kept being recommended things that were either for the children or for us, and almost never for both of us together.</h3>
+        <p>
+          The Margin is a weekend newsletter for parents in their mid-thirties living in Melbourne's inner west. One Saturday morning, one carefully chosen weekend — a botanic garden made for slow mornings, a workshop the kids will remember, a coffee good enough to justify the queue.
+        </p>
+        <p>
+          We don't list fifty things. We list the few that actually worked. Curated, never exhaustive — the small, honest list of things worth keeping.
+        </p>
+      </div>
+
+      <aside class="about-margin" aria-label="About facts">
+        <div class="about-margin-label">The colophon</div>
+        <ul class="about-margin-list">
+          <li><span class="k">Founded</span><span class="v">April 2026, Melbourne</span></li>
+          <li><span class="k">Editor</span><span class="v">Elsie Whittaker</span></li>
+          <li><span class="k">Schedule</span><span class="v">Saturday, 7.00 am</span></li>
+          <li><span class="k">Set in</span><span class="v">Lastik &amp; Haskøy</span></li>
+          <li><span class="k">Read by</span><span class="v">2,400 parents</span></li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FINAL CTA ═══════════ -->
+<section class="final-cta" id="subscribe" data-screen-label="Subscribe">
+  <svg class="final-cta-mark" aria-hidden="true" viewBox="0 0 32 32">
+    <use href="#margin-mark"></use>
+  </svg>
+  <div class="container">
+    <div class="final-cta-inner">
+      <div class="final-cta-eyebrow">Saturday mornings, in your inbox</div>
+      <h2 class="final-cta-title">One newsletter, every Saturday <em>at seven.</em></h2>
+      <p class="final-cta-dek">
+        No notifications, no algorithm, no list of fifty things. Just one carefully chosen weekend in Melbourne's inner west, sent quietly each Saturday before the children wake up.
+      </p>
+      <form class="final-cta-form" onsubmit="event.preventDefault();">
+        <input type="email" placeholder="your.name@email.com" aria-label="Email address" />
+        <button type="submit">Subscribe</button>
+      </form>
+      <p class="final-cta-fineprint">Free. Unsubscribe in one click. We won't share your address with anyone.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="footer" data-screen-label="Footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <a href="#" class="wordmark">
+          <svg aria-hidden="true"><use href="#margin-mark"></use></svg>
+          <span class="wordmark-text">the margin</span>
+        </a>
+        <p>
+          A weekend newsletter for parents in their mid-thirties living in Melbourne's inner west. Curated, never exhaustive.
+        </p>
+      </div>
+      <div>
+        <h4>Read</h4>
+        <a href="#latest">This week's issue</a>
+        <a href="#archive">Archive</a>
+        <a href="#about">About</a>
+      </div>
+      <div>
+        <h4>Follow</h4>
+        <a href="#">Instagram</a>
+        <a href="#">Substack</a>
+        <a href="#">RSS</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="mailto:hello@themargin.au">hello@themargin.au</a>
+        <a href="mailto:tips@themargin.au">Submit a tip</a>
+        <a href="#">Press</a>
+      </div>
+    </div>
+    <div class="container footer-meta" style="padding: 0;">
+      <span>© 2026 The Margin · Melbourne</span>
+      <span>Set in Lastik &amp; Switzer</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Margin — Issue No. 04</title>
+  <link rel="stylesheet" href="assets/colors_and_type.css" />
+  <script src="image-slot.js"></script>
+  <style>
+    /* ─────── HASKOY (replaces Inter for body & UI) ─────── */
+    @font-face {
+      font-family: 'Haskoy';
+      src: url('fonts/Haskoy-Light.otf') format('opentype');
+      font-weight: 300; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Haskoy';
+      src: url('fonts/Haskoy-Regular.otf') format('opentype');
+      font-weight: 400; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Haskoy';
+      src: url('fonts/Haskoy-Italic.otf') format('opentype');
+      font-weight: 400; font-style: italic; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Haskoy';
+      src: url('fonts/Haskoy-Medium.otf') format('opentype');
+      font-weight: 500; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Haskoy';
+      src: url('fonts/Haskoy-MediumItalic.otf') format('opentype');
+      font-weight: 500; font-style: italic; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Haskoy';
+      src: url('fonts/Haskoy-SemiBold.otf') format('opentype');
+      font-weight: 600; font-style: normal; font-display: swap;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+
+    :root {
+      /* override the design-system body font token so all p/h3/etc inherit Switzer */
+      --font-body: 'Switzer', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+      --measure: 620px;
+      --margin-col: 200px;
+      --gutter: 64px;
+      --paper: #FBF9F4;
+      --paper-deep: #F4F2EC;
+      --ink: #24201E;
+      --ink-soft: #3D3835;
+      --stone: #7A7673;
+      --rule: #DDD8CD;
+      --rule-soft: #E6E4DD;
+      --gold: #C49A45;
+      --gold-deep: #A8842D;
+    }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Haskoy', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ─────── PAGE WRAPPER ─────── */
+    .page {
+      max-width: calc(var(--measure) + var(--margin-col) + var(--gutter) + 96px);
+      margin: 0 auto;
+      padding: 48px 48px 96px;
+      position: relative;
+    }
+
+    /* the spread: every content row gets a content column + a true page-margin column */
+    .spread {
+      display: grid;
+      grid-template-columns: minmax(0, var(--measure)) var(--margin-col);
+      column-gap: var(--gutter);
+      align-items: start;
+    }
+    .spread > .content { grid-column: 1; }
+    .spread > .margin { grid-column: 2; }
+
+    /* ─────── MASTHEAD ─────── */
+    .masthead {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--ink);
+      margin-bottom: 14px;
+    }
+    .wordmark {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--ink);
+    }
+    .wordmark svg { width: 24px; height: 24px; flex-shrink: 0; }
+    .wordmark-text {
+      font-family: 'Lastik', Georgia, serif;
+      font-style: italic;
+      font-size: 24px;
+      letter-spacing: -0.01em;
+      line-height: 1;
+    }
+    .masthead-meta {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--stone);
+      display: flex;
+      gap: 24px;
+    }
+    .masthead-meta .accent {
+      color: var(--ink);
+      font-weight: 600;
+    }
+    .masthead-meta .dot {
+      display: inline-block;
+      width: 5px; height: 5px;
+      background: var(--gold);
+      border-radius: 50%;
+      margin-right: 6px;
+      vertical-align: 2px;
+    }
+
+    /* ─────── MARGINALIA (all sidenote variants) ─────── */
+    .margin {
+      padding-top: 6px;
+      position: relative;
+    }
+    .margin::before {
+      /* tiny tick connecting the margin to the gutter rule */
+      content: "";
+      position: absolute;
+      top: 14px;
+      left: -32px;
+      width: 16px;
+      height: 1px;
+      background: var(--gold);
+    }
+    .margin-label {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--stone);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .margin-note {
+      font-family: 'Lastik', Georgia, serif;
+      font-style: italic;
+      font-size: 14px;
+      line-height: 1.45;
+      color: var(--ink);
+      margin: 0 0 18px;
+      max-width: 22ch;
+    }
+    .margin-note small {
+      display: block;
+      font-style: normal;
+      font-family: 'Haskoy', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    /* compact key/value list used for "the logistics" in the margin */
+    .margin-list {
+      list-style: none;
+      margin: 0 0 18px;
+      padding: 0;
+    }
+    .margin-list li {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--rule);
+      font-size: 13px;
+      line-height: 1.45;
+      color: var(--ink);
+    }
+    .margin-list li:first-child { padding-top: 4px; }
+    .margin-list li:last-child { border-bottom: none; }
+    .margin-list .k {
+      display: block;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--stone);
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+    .margin-list .v strong { font-weight: 600; }
+
+    /* footnote-style numbered note */
+    .margin-fn {
+      display: flex;
+      gap: 8px;
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--stone);
+      margin: 0 0 14px;
+      max-width: 22ch;
+    }
+    .margin-fn-num {
+      flex-shrink: 0;
+      font-family: 'Lastik', Georgia, serif;
+      font-style: italic;
+      color: var(--gold-deep);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    /* inline reference superscript in the body */
+    .ref {
+      font-family: 'Lastik', Georgia, serif;
+      font-style: italic;
+      color: var(--gold-deep);
+      font-size: 0.75em;
+      vertical-align: 0.45em;
+      margin-left: 1px;
+      cursor: default;
+    }
+
+    /* ─────── HERO ─────── */
+    .hero { padding: 28px 0 40px; }
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    .hero-title {
+      font-family: 'Lastik', Georgia, serif;
+      font-size: clamp(40px, 5.6vw, 64px);
+      line-height: 1.04;
+      letter-spacing: -0.022em;
+      font-weight: 400;
+      color: var(--ink);
+      margin: 0 0 24px;
+      text-wrap: balance;
+      max-width: 14ch;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--ink-soft);
+    }
+    .hero-dek {
+      font-size: 18px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      max-width: 52ch;
+      margin: 0;
+    }
+
+    /* ─────── FIGURE ─────── */
+    .figure {
+      margin: 0 0 16px;
+      grid-column: 1 / -1; /* full bleed of the spread */
+    }
+    .figure image-slot {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: var(--paper-deep);
+      border: 1px solid var(--rule);
+    }
+    .figure--small image-slot { aspect-ratio: 4 / 3; }
+    .figcaption {
+      font-family: 'Lastik', Georgia, serif;
+      font-style: italic;
+      font-size: 13px;
+      color: var(--stone);
+      line-height: 1.5;
+      margin-top: 10px;
+      max-width: 56ch;
+    }
+
+    /* a thin section rule used between rows */
+    .rule {
+      grid-column: 1 / -1;
+      border: 0;
+      border-top: 1px solid var(--rule);
+      margin: 56px 0;
+    }
+    .rule--ink {
+      border-top: 1px solid var(--ink);
+      opacity: 0.5;
+    }
+
+    /* ─────── ARTICLE ─────── */
+    .article-eyebrow {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink);
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .article-eyebrow-num {
+      font-family: 'Lastik', Georgia, serif;
+      font-style: italic;
+      color: var(--gold-deep);
+      font-weight: 400;
+      letter-spacing: 0;
+      text-transform: none;
+      font-size: 14px;
+    }
+    .article-title {
+      font-family: 'Lastik', Georgia, serif;
+      font-size: 34px;
+      line-height: 1.1;
+      letter-spacing: -0.018em;
+      font-weight: 400;
+      color: var(--ink);
+      margin: 0 0 12px;
+      text-wrap: balance;
+    }
+    .article-title em { font-style: italic; }
+    .article-standfirst {
+      font-size: 17px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      margin: 0 0 28px;
+      max-width: 48ch;
+    }
+    .article-body {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--ink);
+    }
+    .article-body p { margin: 0 0 1.1em; }
+    .article-body p:last-child { margin-bottom: 0; }
+    .article-body em {
+      font-family: 'Lastik', Georgia, serif;
+      font-style: italic;
+      font-size: 1.02em;
+    }
+    .article-body a {
+      color: var(--ink);
+      text-decoration: none;
+      background-image: linear-gradient(var(--gold), var(--gold));
+      background-repeat: no-repeat;
+      background-size: 100% 1px;
+      background-position: 0 92%;
+      padding-bottom: 1px;
+      transition: background-size 200ms ease;
+    }
+    .article-body a:hover { background-size: 100% 30%; }
+
+    /* ─────── INLINE CALLOUT (oatmeal, lives in article body) ─────── */
+    .callout {
+      background: var(--paper-deep);
+      padding: 22px 26px 24px;
+      margin: 32px 0 8px;
+      border-radius: 2px;
+    }
+    .callout-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+    .callout-label::before {
+      content: "";
+      display: inline-block;
+      width: 18px; height: 1px;
+      background: var(--gold);
+    }
+    .callout-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 10px;
+    }
+    .callout-list li {
+      display: grid;
+      grid-template-columns: 18px 1fr;
+      gap: 12px;
+      align-items: baseline;
+      font-size: 15px;
+      line-height: 1.45;
+      color: var(--ink);
+    }
+    .callout-list .n {
+      font-family: 'Lastik', Georgia, serif;
+      font-style: italic;
+      color: var(--gold-deep);
+      font-size: 14px;
+    }
+    .callout-list .v strong { font-weight: 600; }
+    .callout-list .v small {
+      display: block;
+      font-family: 'Haskoy', sans-serif;
+      font-size: 12.5px;
+      color: var(--stone);
+      margin-top: 1px;
+      font-weight: 400;
+    }
+
+    /* ─────── DISCOVERY (dark ink feature card) ─────── */
+    .discovery {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 44px 40px 40px;
+      border-radius: 3px;
+      position: relative;
+      overflow: hidden;
+    }
+    .discovery-mark {
+      position: absolute;
+      top: -28px; right: -28px;
+      width: 180px; height: 180px;
+      opacity: 0.08;
+      color: var(--gold);
+    }
+    .discovery-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+    .discovery-title {
+      font-family: 'Lastik', Georgia, serif;
+      font-size: 32px;
+      line-height: 1.12;
+      letter-spacing: -0.018em;
+      font-weight: 400;
+      color: var(--paper);
+      margin: 0 0 14px;
+      max-width: 22ch;
+      text-wrap: balance;
+    }
+    .discovery-title em { font-style: italic; }
+    .discovery-body {
+      font-size: 16px;
+      line-height: 1.6;
+      color: rgba(251, 249, 244, 0.72);
+      margin: 0 0 22px;
+      max-width: 50ch;
+    }
+    .discovery-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--gold);
+      text-decoration: none;
+      padding-bottom: 3px;
+      border-bottom: 1px solid rgba(196, 154, 69, 0.4);
+      transition: border-color 200ms;
+    }
+    .discovery-link:hover { border-color: var(--gold); }
+    .discovery-link::after {
+      content: "→";
+      transition: transform 200ms;
+    }
+    .discovery-link:hover::after { transform: translateX(2px); }
+
+    /* dark margin variant (sits beside the discovery card) */
+    .margin--inverse::before { background: var(--gold); }
+    .margin--inverse .margin-label { color: var(--gold-deep); }
+
+    /* ─────── EDITOR'S NOTE ─────── */
+    .editors-note .editors-note-label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--stone);
+      font-weight: 500;
+      margin-bottom: 18px;
+    }
+    .editors-note .editors-note-text {
+      font-family: 'Lastik', Georgia, serif;
+      font-size: 22px;
+      line-height: 1.45;
+      letter-spacing: -0.005em;
+      color: var(--ink);
+      margin: 0 0 18px;
+      max-width: 52ch;
+      text-wrap: pretty;
+    }
+    .editors-note .editors-note-attr {
+      font-size: 13px;
+      color: var(--stone);
+      font-style: italic;
+      font-family: 'Lastik', Georgia, serif;
+    }
+
+    /* ─────── SUBSCRIBE (quiet, no panel) ─────── */
+    .subscribe-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+    .subscribe-title {
+      font-family: 'Lastik', Georgia, serif;
+      font-size: 30px;
+      line-height: 1.1;
+      letter-spacing: -0.018em;
+      font-weight: 400;
+      color: var(--ink);
+      margin: 0 0 14px;
+      max-width: 18ch;
+      text-wrap: balance;
+    }
+    .subscribe-body {
+      font-size: 15px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      max-width: 44ch;
+      margin: 0 0 22px;
+    }
+    .subscribe-form {
+      display: flex;
+      gap: 8px;
+      max-width: 440px;
+    }
+    .subscribe-form input {
+      flex: 1;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      color: var(--ink);
+      padding: 12px 14px;
+      border-radius: 3px;
+      font-family: inherit;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 200ms;
+    }
+    .subscribe-form input:focus { border-color: var(--ink); }
+    .subscribe-form input::placeholder { color: var(--stone); }
+    .subscribe-btn {
+      background: var(--ink);
+      color: var(--paper);
+      border: 1px solid var(--ink);
+      padding: 12px 22px;
+      border-radius: 3px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 200ms, color 200ms;
+    }
+    .subscribe-btn:hover { background: var(--gold-deep); border-color: var(--gold-deep); }
+    .subscribe-fineprint {
+      font-size: 12px;
+      color: var(--stone);
+      margin-top: 12px;
+    }
+
+    /* ─────── COLOPHON / FOOTER ─────── */
+    .colophon {
+      padding-top: 32px;
+      border-top: 1px solid var(--ink);
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 40px;
+    }
+    .colophon h4 {
+      font-family: 'Lastik', Georgia, serif;
+      font-style: italic;
+      font-size: 15px;
+      color: var(--ink);
+      margin: 0 0 12px;
+      font-weight: 400;
+    }
+    .colophon p {
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--stone);
+      margin: 0;
+    }
+    .colophon a {
+      display: block;
+      font-size: 13px;
+      color: var(--ink);
+      text-decoration: none;
+      padding: 3px 0;
+      transition: color 200ms;
+    }
+    .colophon a:hover { color: var(--gold-deep); }
+    .colophon-foot {
+      grid-column: 1 / -1;
+      margin-top: 32px;
+      padding-top: 18px;
+      border-top: 1px dotted var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--stone);
+    }
+    .colophon-foot .wordmark-text {
+      font-size: 14px;
+      letter-spacing: -0.005em;
+      text-transform: none;
+    }
+    .colophon-foot .wordmark svg { width: 16px; height: 16px; }
+
+    /* spacing between consecutive sections inside .page */
+    .stack > * + * { margin-top: 56px; }
+
+    /* ─────── RESPONSIVE ─────── */
+    @media (max-width: 880px) {
+      .page { padding: 28px 20px 64px; }
+      .spread {
+        grid-template-columns: 1fr;
+        column-gap: 0;
+        row-gap: 24px;
+      }
+      .spread > .margin { grid-column: 1; }
+      .margin::before { display: none; }
+      .margin-note, .margin-fn { max-width: none; }
+      .figure { grid-column: 1; }
+      .masthead { flex-direction: column; align-items: flex-start; gap: 10px; }
+      .masthead-meta { flex-wrap: wrap; gap: 12px; }
+      .hero-title { font-size: clamp(32px, 8vw, 44px); }
+      .article-title { font-size: 26px; }
+      .colophon { grid-template-columns: 1fr; gap: 24px; }
+      .colophon-foot { flex-direction: column; gap: 12px; align-items: flex-start; }
+      .subscribe-form { flex-direction: column; }
+      .rule { margin: 40px 0; }
+      .stack > * + * { margin-top: 40px; }
+      .discovery { padding: 32px 24px; }
+      .discovery-title { font-size: 26px; }
+      .callout { padding: 20px 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Logomark: an editor's margin-mark (vertical rule + tick + italic "m") -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="margin-mark" viewBox="0 0 32 32">
+      <line x1="6" y1="4" x2="6" y2="28" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+      <circle cx="6" cy="7" r="1.6" fill="currentColor" />
+      <text x="11" y="23" font-family="Lastik, Georgia, serif" font-style="italic" font-size="18" fill="currentColor" font-weight="400">m</text>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="page">
+
+  <!-- ═══════════ MASTHEAD ═══════════ -->
+  <header class="masthead" data-screen-label="Masthead" data-comment-anchor="b82275b8eb-header">
+    <a href="#" class="wordmark" aria-label="The Margin">
+      <svg aria-hidden="true"><use href="#margin-mark"></use></svg>
+      <span class="wordmark-text">the margin</span>
+    </a>
+    <div class="masthead-meta">
+      <span><span class="dot"></span>Issue <span class="accent">No. 04</span></span>
+      <span>17 May 2026</span>
+      <span>Inner West &middot; Melbourne</span>
+    </div>
+  </header>
+
+  <div class="stack">
+
+    <!-- ═══════════ HERO ═══════════ -->
+    <section class="spread" data-screen-label="Hero">
+      <div class="content">
+        <div class="eyebrow">A letter from the editor</div>
+        <h1 class="hero-title" data-comment-anchor="5d39d471ca-h1">Quiet corners of the weekend, <em>found in the margins.</em></h1>
+        <p class="hero-dek">
+          This week: a botanic garden made for slow mornings, a burger that doesn't ask you to compromise, and one printmaking workshop in Abbotsford that's worth the drive across the river.
+        </p>
+      </div>
+      <aside class="margin" aria-label="Issue details">
+        <div class="margin-label">This issue</div>
+        <ul class="margin-list">
+          <li><span class="k">By</span><span class="v"><strong>Elsie Whittaker</strong></span></li>
+          <li><span class="k">Filed</span><span class="v">Sat, 17 May 2026</span></li>
+          <li><span class="k">Read</span><span class="v">8 minutes, slowly</span></li>
+          <li><span class="k">For</span><span class="v">Parents in the inner west</span></li>
+        </ul>
+      </aside>
+    </section>
+
+    <!-- ═══════════ HERO FIGURE ═══════════ -->
+    <section class="spread">
+      <figure class="figure">
+        <image-slot
+          id="hero-image"
+          placeholder="Drop a Saturday-morning photograph — wide, calm, natural light."
+          shape="rect"
+        ></image-slot>
+        <figcaption class="figcaption">
+          Williamstown, just after eight. The figs hadn't quite started dropping yet. <span style="color: var(--stone);">— Photograph for The Margin.</span>
+        </figcaption>
+      </figure>
+    </section>
+
+    <!-- ═══════════ ARTICLE I ═══════════ -->
+    <section class="spread" data-screen-label="Article 1" data-comment-anchor="ad28fa40da-article">
+      <article class="content">
+        <div class="article-eyebrow">
+          <span class="article-eyebrow-num">i.</span>
+          <span>The Morning Shift</span>
+        </div>
+        <h2 class="article-title">Williamstown Botanic Gardens, <em>at eight in the morning.</em></h2>
+        <p class="article-standfirst">
+          A surprisingly quiet spot for a Saturday morning. Enough space for them to run, and enough shade for you to sit down and remember what your own thoughts sound like.
+        </p>
+        <div class="article-body">
+          <p>
+            The Gardens sit on the bay edge of Giffard Street, ten minutes from the ferry terminal. They were laid out in 1860<span class="ref">¹</span> — Victorian-formal, gently overgrown in the way the best of the old gardens are — and on a Saturday at eight, they are almost yours. Wide gravelled paths if you're pushing a pram; thick lawn under the Moreton Bay figs if you're not.
+          </p>
+          <p>
+            We've taken to bringing a thermos of <a href="#">ST. ALi's seasonal blend</a> brewed at home, and a small thing to read. The cafés around the corner — and there are good ones<span class="ref">²</span> — open at nine. You may want to slip out for one before you leave. The trick we've come back to is not pretending you'll get coffee with a toddler in tow.
+          </p>
+        </div>
+
+        <aside class="callout" aria-label="While you're there">
+          <div class="callout-label">While you're there</div>
+          <ul class="callout-list">
+            <li>
+              <span class="n">a.</span>
+              <span class="v"><strong>The Time-Ball Tower</strong>, Point Gellibrand <small>A five-minute walk; drops at 1.00 pm sharp on weekdays.</small></span>
+            </li>
+            <li>
+              <span class="n">b.</span>
+              <span class="v"><strong>Hobsons Bay foreshore</strong>, ten minutes by foot <small>Flat, paved, and the ferry passes every half hour.</small></span>
+            </li>
+            <li>
+              <span class="n">c.</span>
+              <span class="v"><strong>The Cured Cáfé</strong>, Ferguson Street <small>Coffee good enough to justify the queue. Open from nine.</small></span>
+            </li>
+          </ul>
+        </aside>
+      </article>
+
+      <aside class="margin" aria-label="Logistics for Williamstown Botanic Gardens">
+        <div class="margin-label">The logistics</div>
+        <ul class="margin-list">
+          <li><span class="k">Where</span><span class="v"><strong>10 Giffard St</strong>, Williamstown</span></li>
+          <li><span class="k">When</span><span class="v">8.00 am – 5.30 pm, daily</span></li>
+          <li><span class="k">Best at</span><span class="v">Before 9.30 am</span></li>
+          <li><span class="k">Pram</span><span class="v">Yes, wide gravel paths</span></li>
+        </ul>
+
+        <p class="margin-fn"><span class="margin-fn-num">¹</span><span>One of Victoria's earliest gardens, designed by Daniel Bunce.</span></p>
+        <p class="margin-fn"><span class="margin-fn-num">²</span><span>Common Galaxia and The Cured Café, both within a five-minute walk.</span></p>
+      </aside>
+    </section>
+
+    <hr class="rule" />
+
+    <!-- ═══════════ ARTICLE II ═══════════ -->
+    <section class="spread" data-screen-label="Article 2">
+      <article class="content">
+        <div class="article-eyebrow">
+          <span class="article-eyebrow-num">ii.</span>
+          <span>The Afternoon Reset</span>
+        </div>
+        <h2 class="article-title">Good Good Burgers, <em>and the case against the kids' menu.</em></h2>
+        <p class="article-standfirst">
+          A Yarraville staple that doesn't feel like a compromise. Genuinely accommodating for families, but still a proper treat for the parents.
+        </p>
+        <div class="article-body">
+          <p>
+            Good Good is good in the way burgers used to be good, before they had to apologise for it. There is no kids' menu — which sounds inhospitable until you realise it isn't, because what they serve is what kids will actually eat, only better. The classic is twelve dollars. The bun is from <em>Baker D. Chirico</em>. You may want two.
+          </p>
+          <p>
+            We've started arriving at the soft middle of the afternoon — between the lunch rush and the dinner one — when the room thins out, the staff have time for the kids, and you can hear each other across the table. It feels, briefly, like a date.
+          </p>
+        </div>
+      </article>
+
+      <aside class="margin" aria-label="The order at Good Good Burgers">
+        <div class="margin-label">The order</div>
+        <ul class="margin-list">
+          <li><span class="k">For you</span><span class="v"><strong>The Classic.</strong> Don't overthink it.</span></li>
+          <li><span class="k">For them</span><span class="v">Cheeseburger, cheese pulled aside on request</span></li>
+          <li><span class="k">When</span><span class="v">2 – 4 pm, the quieter window</span></li>
+          <li><span class="k">Side</span><span class="v">Salted fries, share one between two</span></li>
+        </ul>
+
+        <p class="margin-note">
+          A small thing — they keep a stack of children's books by the window. Worth knowing.
+          <small>— Editor</small>
+        </p>
+      </aside>
+    </section>
+
+    <hr class="rule" />
+
+    <!-- ═══════════ THIS WEEK'S DISCOVERY (dark feature card) ═══════════ -->
+    <section class="spread" data-screen-label="Discovery">
+      <article class="content discovery">
+        <svg class="discovery-mark" aria-hidden="true" viewBox="0 0 32 32">
+          <use href="#margin-mark"></use>
+        </svg>
+        <div class="discovery-eyebrow">This week's discovery</div>
+        <h2 class="discovery-title">A printmaking workshop in Abbotsford, <em>made for families.</em></h2>
+        <p class="discovery-body">
+          A new arts space is running a family-friendly printmaking session every Saturday morning. No experience necessary; the kids design their own and roll the press themselves. The kind of thing that feels less like an “activity” and more like an afternoon you'll actually remember.
+        </p>
+        <a href="#" class="discovery-link">Book a spot</a>
+      </article>
+
+      <aside class="margin margin--inverse" aria-label="Workshop details">
+        <div class="margin-label">The details</div>
+        <ul class="margin-list">
+          <li><span class="k">Where</span><span class="v"><strong>Studio Folk</strong>, Abbotsford</span></li>
+          <li><span class="k">When</span><span class="v">Saturdays, 10.00 – 11.30 am</span></li>
+          <li><span class="k">Ages</span><span class="v">4 – 10, accompanied</span></li>
+          <li><span class="k">Price</span><span class="v">$28 per child</span></li>
+        </ul>
+      </aside>
+    </section>
+
+    <hr class="rule" />
+
+    <!-- ═══════════ EDITOR'S NOTE ═══════════ -->
+    <section class="spread" data-screen-label="Editor's Note">
+      <aside class="content editors-note">
+        <div class="editors-note-label">A note in the margin</div>
+        <p class="editors-note-text">
+          We started this newsletter because we kept being recommended things that were either for the children or for us, and almost never for both of us together. The Margin is the small, honest list of things that worked for everyone.
+        </p>
+        <div class="editors-note-attr">— Elsie, founding editor</div>
+      </aside>
+
+      <aside class="margin">
+        <div class="margin-label">Up next</div>
+        <p class="margin-note">
+          A walk along the Maribyrnong, and one excellent bakery in Footscray that opens at six.
+          <small>Issue No. 05 · 24 May</small>
+        </p>
+      </aside>
+    </section>
+
+    <hr class="rule rule--ink" />
+
+    <!-- ═══════════ SUBSCRIBE ═══════════ -->
+    <section class="spread" data-screen-label="Subscribe">
+      <div class="content">
+        <div class="subscribe-eyebrow">Saturday mornings, in your inbox</div>
+        <h2 class="subscribe-title">One newsletter, every Saturday at seven.</h2>
+        <p class="subscribe-body">
+          No notifications, no algorithm, no list of fifty things. Just one carefully chosen weekend in Melbourne's inner west, sent quietly before the children wake up.
+        </p>
+        <form class="subscribe-form" onsubmit="event.preventDefault();">
+          <input type="email" placeholder="your.name@email.com" aria-label="Email address" />
+          <button class="subscribe-btn" type="submit">Subscribe</button>
+        </form>
+        <p class="subscribe-fineprint">Free. Unsubscribe in one click.</p>
+      </div>
+
+      <aside class="margin">
+        <div class="margin-label">Also from us</div>
+        <ul class="margin-list">
+          <li><span class="k">Archive</span><span class="v">All four issues, free</span></li>
+          <li><span class="k">Index</span><span class="v">By suburb &amp; by season</span></li>
+          <li><span class="k">Tips</span><span class="v">tips@themargin.au</span></li>
+        </ul>
+      </aside>
+    </section>
+
+  </div>
+
+  <!-- ═══════════ COLOPHON ═══════════ -->
+  <footer class="colophon" data-screen-label="Footer" style="margin-top: 72px;">
+    <div>
+      <h4>About</h4>
+      <p>
+        The Margin is a weekend newsletter for parents in their mid-thirties living in Melbourne's inner west. Curated, never exhaustive.
+      </p>
+    </div>
+    <div>
+      <h4>Read</h4>
+      <a href="#">This week's issue</a>
+      <a href="#">Archive</a>
+      <a href="#">Index of suburbs</a>
+    </div>
+    <div>
+      <h4>Follow</h4>
+      <a href="#">Instagram</a>
+      <a href="#">Substack</a>
+      <a href="#">Contact</a>
+    </div>
+
+    <div class="colophon-foot">
+      <a href="#" class="wordmark">
+        <svg aria-hidden="true"><use href="#margin-mark"></use></svg>
+        <span class="wordmark-text">the margin</span>
+      </a>
+      <span>© 2026 &middot; Melbourne &middot; Set in Lastik &amp; Switzer</span>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>
