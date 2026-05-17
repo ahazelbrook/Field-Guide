@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Field Guide — Logo Exploration</title>
+  <link rel="stylesheet" href="assets/colors_and_type.css" />
+  <style>
+    /* Local overrides — the master CSS expects fonts at ../fonts/.
+       Our fonts live in ./fonts/, so re-declare with the right path. */
+    @font-face {
+      font-family: 'Lastik';
+      src: url('fonts/LastikFreeFont-Free.otf') format('opentype');
+      font-weight: 400; font-style: normal;
+    }
+    @font-face {
+      font-family: 'Lastik';
+      src: url('fonts/LastikFreeFont-Free.otf') format('opentype');
+      font-weight: 700; font-style: normal;
+    }
+    @font-face {
+      font-family: 'Switzer';
+      src: url('fonts/Switzer-Regular.otf') format('opentype');
+      font-weight: 400; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Switzer';
+      src: url('fonts/Switzer-Medium.otf') format('opentype');
+      font-weight: 500; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Switzer';
+      src: url('fonts/Switzer-Semibold.otf') format('opentype');
+      font-weight: 600; font-style: normal; font-display: swap;
+    }
+
+    html, body { margin: 0; padding: 0; height: 100%; }
+    body { background: #f0eee9; font-family: 'Switzer', system-ui, sans-serif; }
+    #root { height: 100vh; }
+
+    /* ---- Logo specimen card scaffold ----
+       Every artboard splits into 3 zones:
+         .lab-hero  = the mark, big, on white
+         .lab-dark  = the mark on charcoal (test reverse colour)
+         .lab-meta  = label + notes
+    */
+    .lab {
+      width: 100%; height: 100%;
+      background: #fff;
+      display: grid;
+      grid-template-rows: 1fr 110px 76px;
+      font-family: 'Switzer', sans-serif;
+      color: #24201E;
+    }
+    .lab-hero {
+      display: flex; align-items: center; justify-content: center;
+      padding: 28px;
+      border-bottom: 1px solid #E6E4DD;
+    }
+    .lab-dark {
+      display: flex; align-items: center; justify-content: center;
+      background: #24201E;
+    }
+    .lab-meta {
+      padding: 14px 18px;
+      display: flex; flex-direction: column; justify-content: center;
+      gap: 4px;
+      border-top: 1px solid #E6E4DD;
+    }
+    .lab-name {
+      font-family: 'Switzer'; font-weight: 600; font-size: 13px;
+      letter-spacing: 0.02em;
+      color: #24201E;
+    }
+    .lab-note {
+      font-family: 'Switzer'; font-weight: 400; font-size: 11.5px;
+      color: #7A7673;
+      line-height: 1.4;
+    }
+
+    /* =====================================================
+       LOGO MARKS — each .fg-* is self-contained so we can
+       drop the chosen one straight into the newsletter.
+       ===================================================== */
+
+    /* 01 — Rust square, white "fg" italic. Tight, badge-like. */
+    .fg-01 {
+      width: 88px; height: 88px;
+      border-radius: 18px;
+      background: #C49A45;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 1px 2px rgba(36,32,30,.05);
+    }
+    .fg-01 .glyph {
+      font-family: 'Lastik', Georgia, serif;
+      font-style: italic;
+      font-size: 52px;
+      color: #fff;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      transform: translateY(-2px);
+    }
+    .fg-01--reverse { background: #fff; }
+    .fg-01--reverse .glyph { color: #C49A45; }
+
+    /* 02 — Charcoal square, oatmeal "FG" upright caps. Quieter, editorial. */
+    .fg-02 {
+      width: 88px; height: 88px;
+      border-radius: 14px;
+      background: #24201E;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .fg-02 .glyph {
+      font-family: 'Lastik', Georgia, serif;
+      font-weight: 400;
+      font-size: 36px;
+      color: #F4F2EC;
+      letter-spacing: 0.02em;
+      line-height: 1;
+    }
+    .fg-02--reverse { background: #F4F2EC; }
+    .fg-02--reverse .glyph { color: #24201E; }
+
+    /* 03 — Oatmeal square with hairline border + rust italic. Soft, paper-like. */
+    .fg-03 {
+      width: 88px; height: 88px;
+      border-radius: 12px;
+      background: #F4F2EC;
+      border: 1px solid #E6E4DD;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .fg-03 .glyph {
+      font-family: 'Lastik', Georgia, serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 48px;
+      color: #C49A45;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      transform: translateY(-2px);
+    }
+    .fg-03--reverse {
+      background: transparent;
+      border-color: rgba(255,255,255,.25);
+    }
+
+    /* 04 — Pill wordmark, rust, white text "field guide" italic. */
+    .fg-04 {
+      padding: 12px 22px 14px;
+      border-radius: 999px;
+      background: #C49A45;
+      display: inline-flex; align-items: center;
+    }
+    .fg-04 .glyph {
+      font-family: 'Lastik', Georgia, serif;
+      font-style: italic;
+      font-size: 28px;
+      color: #fff;
+      line-height: 1;
+      letter-spacing: -0.01em;
+    }
+    .fg-04--reverse { background: #fff; }
+    .fg-04--reverse .glyph { color: #C49A45; }
+
+    /* 05 — Charcoal rounded rectangle, full "Field Guide" wordmark Lastik upright. */
+    .fg-05 {
+      padding: 14px 22px 16px;
+      border-radius: 10px;
+      background: #24201E;
+      display: inline-flex; align-items: baseline; gap: 6px;
+    }
+    .fg-05 .glyph {
+      font-family: 'Lastik', Georgia, serif;
+      font-weight: 400;
+      font-size: 26px;
+      color: #fff;
+      line-height: 1;
+      letter-spacing: -0.005em;
+    }
+    .fg-05 .dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: #C49A45;
+      align-self: center;
+      margin: 0 4px;
+      transform: translateY(0);
+    }
+    .fg-05--reverse { background: #F4F2EC; }
+    .fg-05--reverse .glyph { color: #24201E; }
+
+    /* 06 — Outline square, charcoal stroke, single "F" italic + small caps "G" tucked top-right. */
+    .fg-06 {
+      width: 88px; height: 88px;
+      border-radius: 14px;
+      border: 1.5px solid #24201E;
+      background: #fff;
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .fg-06 .big {
+      font-family: 'Lastik', Georgia, serif;
+      font-style: italic;
+      font-size: 58px;
+      color: #24201E;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      transform: translate(-6px, -2px);
+    }
+    .fg-06 .small {
+      position: absolute;
+      top: 14px; right: 14px;
+      font-family: 'Switzer', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      color: #C49A45;
+      text-transform: uppercase;
+    }
+    .fg-06--reverse {
+      border-color: #F4F2EC;
+      background: transparent;
+    }
+    .fg-06--reverse .big { color: #F4F2EC; }
+
+    /* 07 — Horizontal lockup: small rust square mark + wordmark beside. */
+    .fg-07 {
+      display: inline-flex; align-items: center; gap: 12px;
+    }
+    .fg-07 .mark {
+      width: 40px; height: 40px;
+      border-radius: 9px;
+      background: #C49A45;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .fg-07 .mark span {
+      font-family: 'Lastik', Georgia, serif;
+      font-style: italic;
+      font-size: 24px;
+      color: #fff;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      transform: translateY(-1px);
+    }
+    .fg-07 .word {
+      font-family: 'Lastik', Georgia, serif;
+      font-size: 26px;
+      font-weight: 400;
+      color: #24201E;
+      line-height: 1;
+      letter-spacing: -0.01em;
+    }
+    .fg-07--reverse .word { color: #F4F2EC; }
+
+    /* 08 — Stacked: "field" / "guide" two lines inside a tall rounded rectangle. */
+    .fg-08 {
+      padding: 14px 16px;
+      border-radius: 8px;
+      background: #24201E;
+      display: inline-flex; flex-direction: column; align-items: flex-start;
+      line-height: 0.95;
+    }
+    .fg-08 .l1, .fg-08 .l2 {
+      font-family: 'Lastik', Georgia, serif;
+      font-style: italic;
+      font-size: 28px;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+    .fg-08 .l2 { color: #C49A45; }
+    .fg-08--reverse { background: #F4F2EC; }
+    .fg-08--reverse .l1 { color: #24201E; }
+
+    /* 09 — Soft squircle "fg" with subtle inner shadow — premium feel. */
+    .fg-09 {
+      width: 88px; height: 88px;
+      border-radius: 26px;
+      background: linear-gradient(180deg, #C9A153 0%, #B68A36 100%);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.18),
+        inset 0 -1px 0 rgba(0,0,0,0.08),
+        0 1px 2px rgba(36,32,30,0.08);
+    }
+    .fg-09 .glyph {
+      font-family: 'Lastik', Georgia, serif;
+      font-style: italic;
+      font-size: 50px;
+      color: #fff;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      transform: translateY(-2px);
+    }
+    .fg-09--reverse { background: #fff; box-shadow: none; }
+    .fg-09--reverse .glyph {
+      background: linear-gradient(180deg, #C9A153 0%, #B68A36 100%);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* ====== Header context strip ======
+       Shows the mark used as it would appear in a real newsletter header. */
+    .ctx-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 24px 40px;
+      background: #fff;
+      border-bottom: 1px solid #E6E4DD;
+      height: 100%;
+      box-sizing: border-box;
+    }
+    .ctx-header .right {
+      display: flex; gap: 24px;
+      font-family: 'Switzer', sans-serif;
+      font-size: 12px;
+      color: #7A7673;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+    .ctx-issue {
+      font-family: 'Switzer', sans-serif;
+      font-size: 11px;
+      color: #7A7673;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    /* Section intro panel */
+    .intro {
+      width: 100%; height: 100%; background: #fff; padding: 40px 48px;
+      box-sizing: border-box;
+      display: flex; flex-direction: column; justify-content: center;
+      gap: 18px;
+    }
+    .intro h1 {
+      font-family: 'Lastik', Georgia, serif;
+      font-size: 44px; line-height: 1.05; margin: 0;
+      letter-spacing: -0.02em;
+      color: #24201E;
+      font-weight: 400;
+    }
+    .intro h1 em {
+      font-style: italic; color: #C49A45;
+    }
+    .intro p {
+      font-family: 'Switzer', sans-serif;
+      font-size: 15px; line-height: 1.55; color: #24201E;
+      max-width: 56ch;
+      margin: 0;
+    }
+    .intro .small {
+      font-family: 'Switzer', sans-serif;
+      font-size: 12px; color: #7A7673; line-height: 1.55;
+      max-width: 56ch;
+    }
+    .intro .rule {
+      width: 36px; height: 2px; background: #C49A45;
+    }
+    .intro .meta {
+      font-family: 'Switzer', sans-serif;
+      font-size: 11px;
+      color: #7A7673;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+  </style>
+
+  <!-- React + Babel -->
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script type="text/babel" src="design-canvas.jsx"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel" data-presets="env,react">
+    const { useState } = React;
+
+    /** Specimen artboard — mark on light + mark on dark + caption. */
+    function Specimen({ children, reverseChildren, name, note }) {
+      return (
+        <div className="lab">
+          <div className="lab-hero">{children}</div>
+          <div className="lab-dark">{reverseChildren || children}</div>
+          <div className="lab-meta">
+            <div className="lab-name">{name}</div>
+            <div className="lab-note">{note}</div>
+          </div>
+        </div>
+      );
+    }
+
+    /** Header context artboard — mark used in a faux newsletter header. */
+    function HeaderContext({ markLight }) {
+      return (
+        <div className="ctx-header">
+          {markLight}
+          <div className="right">
+            <span>Issue No. 047</span>
+            <span>Saturday</span>
+            <span>Archive</span>
+          </div>
+        </div>
+      );
+    }
+
+    function App() {
+      return (
+        <DesignCanvas>
+          <DCSection
+            id="intro"
+            title="Field Guide — Logomark Exploration"
+            subtitle="Nine simple marks. Pick one (or mix), and we'll roll it into the newsletter & site."
+          >
+            <DCArtboard id="brief" label="The brief" width={560} height={420}>
+              <div className="intro">
+                <div className="meta">Logo brief · v1</div>
+                <h1>A single rounded shape.<br/><em>Field Guide</em> set in Lastik.</h1>
+                <div className="rule"></div>
+                <p>
+                  Nine quiet variations on the same idea: a rounded badge — square,
+                  rectangle, pill, or squircle — carrying the name in Lastik. Each
+                  is shown on white and on charcoal so we can read both states at once.
+                </p>
+                <p className="small">
+                  Direction A · monogram <strong>fg</strong> (compact, scales tiny — favicon-ready) ·
+                  Direction B · full <strong>Field Guide</strong> wordmark in a pill or block ·
+                  Direction C · lockup (mark + wordmark side-by-side) for headers.
+                </p>
+              </div>
+            </DCArtboard>
+          </DCSection>
+
+          <DCSection
+            id="monograms"
+            title="A · Monograms"
+            subtitle="A small badge with 'fg' or 'FG'. Works as a favicon, profile avatar, and corner mark."
+          >
+            <DCArtboard id="m01" label="01 · Rust badge, italic fg" width={300} height={400}>
+              <Specimen
+                name="01 · Rust badge"
+                note="Softer Rust fill, Lastik italic. Warm, confident, badge-like."
+              >
+                <div className="fg-01"><span className="glyph">fg</span></div>
+              </Specimen>
+            </DCArtboard>
+
+            <DCArtboard id="m02" label="02 · Charcoal block, upright FG" width={300} height={400}>
+              <Specimen
+                name="02 · Charcoal block"
+                note="Editorial and quiet — upright caps, oatmeal text on ink."
+                reverseChildren={
+                  <div className="fg-02 fg-02--reverse"><span className="glyph">FG</span></div>
+                }
+              >
+                <div className="fg-02"><span className="glyph">FG</span></div>
+              </Specimen>
+            </DCArtboard>
+
+            <DCArtboard id="m03" label="03 · Oatmeal paper" width={300} height={400}>
+              <Specimen
+                name="03 · Oatmeal paper"
+                note="Hairline border, rust italic. Reads as a stamped page corner."
+                reverseChildren={
+                  <div className="fg-03 fg-03--reverse"><span className="glyph">fg</span></div>
+                }
+              >
+                <div className="fg-03"><span className="glyph">fg</span></div>
+              </Specimen>
+            </DCArtboard>
+
+            <DCArtboard id="m06" label="06 · Outlined card" width={300} height={400}>
+              <Specimen
+                name="06 · Outlined card"
+                note="Hairline stroke, italic F, tiny 'fg' tab. Most editorial of the set."
+                reverseChildren={
+                  <div className="fg-06 fg-06--reverse">
+                    <span className="big">F</span>
+                    <span className="small">fg</span>
+                  </div>
+                }
+              >
+                <div className="fg-06">
+                  <span className="big">F</span>
+                  <span className="small">fg</span>
+                </div>
+              </Specimen>
+            </DCArtboard>
+
+            <DCArtboard id="m09" label="09 · Squircle, gradient" width={300} height={400}>
+              <Specimen
+                name="09 · Soft squircle"
+                note="Larger corner radius + subtle metal gradient. Feels app-iconish."
+                reverseChildren={
+                  <div className="fg-09 fg-09--reverse"><span className="glyph">fg</span></div>
+                }
+              >
+                <div className="fg-09"><span className="glyph">fg</span></div>
+              </Specimen>
+            </DCArtboard>
+          </DCSection>
+
+          <DCSection
+            id="wordmarks"
+            title="B · Wordmarks in a shape"
+            subtitle="Full 'Field Guide' inside a single rounded container. Stronger presence; less flexible at small sizes."
+          >
+            <DCArtboard id="w04" label="04 · Rust pill, italic" width={300} height={400}>
+              <Specimen
+                name="04 · Rust pill"
+                note="Pill capsule, Lastik italic. Feels like a stamp / sticker."
+                reverseChildren={
+                  <div className="fg-04 fg-04--reverse"><span className="glyph">field guide</span></div>
+                }
+              >
+                <div className="fg-04"><span className="glyph">field guide</span></div>
+              </Specimen>
+            </DCArtboard>
+
+            <DCArtboard id="w05" label="05 · Charcoal block + dot" width={300} height={400}>
+              <Specimen
+                name="05 · Charcoal block"
+                note="Two words separated by a rust dot. Upright Lastik — most book-like."
+                reverseChildren={
+                  <div className="fg-05 fg-05--reverse">
+                    <span className="glyph">Field</span>
+                    <span className="dot"></span>
+                    <span className="glyph">Guide</span>
+                  </div>
+                }
+              >
+                <div className="fg-05">
+                  <span className="glyph">Field</span>
+                  <span className="dot"></span>
+                  <span className="glyph">Guide</span>
+                </div>
+              </Specimen>
+            </DCArtboard>
+
+            <DCArtboard id="w08" label="08 · Stacked block" width={300} height={400}>
+              <Specimen
+                name="08 · Stacked block"
+                note="Two stacked italic words inside a small ink card. Vertical, compact."
+                reverseChildren={
+                  <div className="fg-08 fg-08--reverse">
+                    <div className="l1">field</div>
+                    <div className="l2">guide</div>
+                  </div>
+                }
+              >
+                <div className="fg-08">
+                  <div className="l1">field</div>
+                  <div className="l2">guide</div>
+                </div>
+              </Specimen>
+            </DCArtboard>
+          </DCSection>
+
+          <DCSection
+            id="lockup"
+            title="C · Lockup (mark + wordmark)"
+            subtitle="What we'd actually drop into a newsletter header — mark on the left, wordmark beside it."
+          >
+            <DCArtboard id="l07" label="07 · Mark + wordmark" width={300} height={400}>
+              <Specimen
+                name="07 · Lockup"
+                note="Rust square + 'Field Guide' upright Lastik. Most flexible for headers."
+                reverseChildren={
+                  <div className="fg-07 fg-07--reverse">
+                    <div className="mark"><span>fg</span></div>
+                    <span className="word">Field Guide</span>
+                  </div>
+                }
+              >
+                <div className="fg-07">
+                  <div className="mark"><span>fg</span></div>
+                  <span className="word">Field Guide</span>
+                </div>
+              </Specimen>
+            </DCArtboard>
+
+            <DCArtboard id="header-01" label="In context · header w/ 01" width={920} height={120}>
+              <HeaderContext
+                markLight={
+                  <div className="fg-07">
+                    <div className="mark"><span>fg</span></div>
+                    <span className="word">Field Guide</span>
+                  </div>
+                }
+              />
+            </DCArtboard>
+
+            <DCArtboard id="header-02" label="In context · header w/ 05" width={920} height={120}>
+              <HeaderContext
+                markLight={
+                  <div className="fg-05">
+                    <span className="glyph">Field</span>
+                    <span className="dot"></span>
+                    <span className="glyph">Guide</span>
+                  </div>
+                }
+              />
+            </DCArtboard>
+
+            <DCArtboard id="header-03" label="In context · header w/ 02" width={920} height={120}>
+              <HeaderContext
+                markLight={
+                  <div style={{ display:'inline-flex', alignItems:'center', gap:'14px' }}>
+                    <div className="fg-02"><span className="glyph">FG</span></div>
+                    <span style={{ fontFamily:"'Lastik', Georgia, serif", fontSize:'28px', color:'#24201E', letterSpacing:'-0.005em' }}>Field Guide</span>
+                  </div>
+                }
+              />
+            </DCArtboard>
+          </DCSection>
+        </DesignCanvas>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>

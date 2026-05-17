@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Margin — Issue No. 04</title>
+  <title>Field Guide — Issue No. 04</title>
   <link rel="stylesheet" href="assets/colors_and_type.css" />
   <script src="image-slot.js"></script>
   <style>
@@ -103,14 +103,29 @@
       text-decoration: none;
       color: var(--ink);
     }
-    .wordmark svg { width: 24px; height: 24px; flex-shrink: 0; }
+    .wordmark svg { width: auto; height: 26px; aspect-ratio: 32 / 40; flex-shrink: 0; }
     .wordmark-text {
       font-family: 'Lastik', Georgia, serif;
-      font-style: italic;
+      font-style: normal;
+      font-weight: 400;
       font-size: 24px;
-      letter-spacing: -0.01em;
+      letter-spacing: -0.005em;
       line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--ink);
     }
+    .wordmark-text .wm-dot {
+      width: 5px;
+      height: 5px;
+      background: var(--gold);
+      border-radius: 1px;
+      flex-shrink: 0;
+      transform: translateY(1px);
+    }
+    .colophon-foot .wordmark-text { font-size: 16px; gap: 7px; }
+    .colophon-foot .wordmark-text .wm-dot { width: 4px; height: 4px; }
     .masthead-meta {
       font-size: 11px;
       font-weight: 500;
@@ -628,7 +643,7 @@
       letter-spacing: -0.005em;
       text-transform: none;
     }
-    .colophon-foot .wordmark svg { width: 16px; height: 16px; }
+    .colophon-foot .wordmark svg { width: auto; height: 18px; aspect-ratio: 32 / 40; }
 
     /* spacing between consecutive sections inside .page */
     .stack > * + * { margin-top: 56px; }
@@ -662,13 +677,14 @@
 </head>
 <body>
 
-<!-- Logomark: an editor's margin-mark (vertical rule + tick + italic "m") -->
+<!-- Logomark: Field Guide 'q' mark -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
-    <symbol id="margin-mark" viewBox="0 0 32 32">
-      <line x1="6" y1="4" x2="6" y2="28" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
-      <circle cx="6" cy="7" r="1.6" fill="currentColor" />
-      <text x="11" y="23" font-family="Lastik, Georgia, serif" font-style="italic" font-size="18" fill="currentColor" font-weight="400">m</text>
+    <symbol id="margin-mark" viewBox="0 0 32 40">
+      <g fill="none" stroke="#C49A45" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12.5" cy="12.5" r="10" />
+        <path d="M 22.5 12.5 L 22.5 33 Q 22.5 37 26.5 37" />
+      </g>
     </symbol>
   </defs>
 </svg>
@@ -677,9 +693,9 @@
 
   <!-- ═══════════ MASTHEAD ═══════════ -->
   <header class="masthead" data-screen-label="Masthead" data-comment-anchor="b82275b8eb-header">
-    <a href="#" class="wordmark" aria-label="The Margin">
+    <a href="#" class="wordmark" aria-label="Field Guide">
       <svg aria-hidden="true"><use href="#margin-mark"></use></svg>
-      <span class="wordmark-text">the margin</span>
+      <span class="wordmark-text"><span>Field</span><span class="wm-dot" aria-hidden="true"></span><span>Guide</span></span>
     </a>
     <div class="masthead-meta">
       <span><span class="dot"></span>Issue <span class="accent">No. 04</span></span>
@@ -693,7 +709,7 @@
     <!-- ═══════════ HERO ═══════════ -->
     <section class="spread" data-screen-label="Hero">
       <div class="content">
-        <div class="eyebrow">A letter from the editor</div>
+        <div class="eyebrow">This week's letter</div>
         <h1 class="hero-title" data-comment-anchor="5d39d471ca-h1">Quiet corners of the weekend, <em>found in the margins.</em></h1>
         <p class="hero-dek">
           This week: a botanic garden made for slow mornings, a burger that doesn't ask you to compromise, and one printmaking workshop in Abbotsford that's worth the drive across the river.
@@ -702,7 +718,6 @@
       <aside class="margin" aria-label="Issue details">
         <div class="margin-label">This issue</div>
         <ul class="margin-list">
-          <li><span class="k">By</span><span class="v"><strong>Elsie Whittaker</strong></span></li>
           <li><span class="k">Filed</span><span class="v">Sat, 17 May 2026</span></li>
           <li><span class="k">Read</span><span class="v">8 minutes, slowly</span></li>
           <li><span class="k">For</span><span class="v">Parents in the inner west</span></li>
@@ -719,7 +734,7 @@
           shape="rect"
         ></image-slot>
         <figcaption class="figcaption">
-          Williamstown, just after eight. The figs hadn't quite started dropping yet. <span style="color: var(--stone);">— Photograph for The Margin.</span>
+          Williamstown, just after eight. The figs hadn't quite started dropping yet. <span style="color: var(--stone);">— Photograph for Field Guide.</span>
         </figcaption>
       </figure>
     </section>
@@ -811,7 +826,6 @@
 
         <p class="margin-note">
           A small thing — they keep a stack of children's books by the window. Worth knowing.
-          <small>— Editor</small>
         </p>
       </aside>
     </section>
@@ -821,7 +835,7 @@
     <!-- ═══════════ THIS WEEK'S DISCOVERY (dark feature card) ═══════════ -->
     <section class="spread" data-screen-label="Discovery">
       <article class="content discovery">
-        <svg class="discovery-mark" aria-hidden="true" viewBox="0 0 32 32">
+        <svg class="discovery-mark" aria-hidden="true" viewBox="0 0 32 40">
           <use href="#margin-mark"></use>
         </svg>
         <div class="discovery-eyebrow">This week's discovery</div>
@@ -845,14 +859,14 @@
 
     <hr class="rule" />
 
-    <!-- ═══════════ EDITOR'S NOTE ═══════════ -->
-    <section class="spread" data-screen-label="Editor's Note">
+    <!-- ═══════════ A NOTE ═══════════ -->
+    <section class="spread" data-screen-label="A Note">
       <aside class="content editors-note">
         <div class="editors-note-label">A note in the margin</div>
         <p class="editors-note-text">
-          We started this newsletter because we kept being recommended things that were either for the children or for us, and almost never for both of us together. The Margin is the small, honest list of things that worked for everyone.
+          We started this newsletter because we kept being recommended things that were either for the children or for us, and almost never for both of us together. Field Guide is the small, honest list of things that worked for everyone.
         </p>
-        <div class="editors-note-attr">— Elsie, founding editor</div>
+        <div class="editors-note-attr">— Field Guide</div>
       </aside>
 
       <aside class="margin">
@@ -886,7 +900,7 @@
         <ul class="margin-list">
           <li><span class="k">Archive</span><span class="v">All four issues, free</span></li>
           <li><span class="k">Index</span><span class="v">By suburb &amp; by season</span></li>
-          <li><span class="k">Tips</span><span class="v">tips@themargin.au</span></li>
+          <li><span class="k">Tips</span><span class="v">tips@fieldguide.au</span></li>
         </ul>
       </aside>
     </section>
@@ -898,7 +912,7 @@
     <div>
       <h4>About</h4>
       <p>
-        The Margin is a weekend newsletter for parents in their mid-thirties living in Melbourne's inner west. Curated, never exhaustive.
+        Field Guide is a weekend newsletter for parents in their mid-thirties living in Melbourne's inner west. Curated, never exhaustive.
       </p>
     </div>
     <div>
@@ -917,9 +931,9 @@
     <div class="colophon-foot">
       <a href="#" class="wordmark">
         <svg aria-hidden="true"><use href="#margin-mark"></use></svg>
-        <span class="wordmark-text">the margin</span>
+        <span class="wordmark-text"><span>Field</span><span class="wm-dot" aria-hidden="true"></span><span>Guide</span></span>
       </a>
-      <span>© 2026 &middot; Melbourne &middot; Set in Lastik &amp; Switzer</span>
+      <span>© 2026 &middot; Melbourne &middot; Field Guide</span>
     </div>
   </footer>
 

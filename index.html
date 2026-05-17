@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Margin — A weekend newsletter from Melbourne's inner west</title>
+  <title>Field Guide — A weekend newsletter from Melbourne's inner west</title>
   <link rel="stylesheet" href="assets/colors_and_type.css" />
   <script src="image-slot.js"></script>
   <style>
@@ -63,13 +63,26 @@
       text-decoration: none;
       color: var(--ink);
     }
-    .wordmark svg { width: 22px; height: 22px; flex-shrink: 0; }
+    .wordmark svg { width: auto; height: 24px; aspect-ratio: 32 / 40; flex-shrink: 0; }
     .wordmark-text {
       font-family: 'Lastik', Georgia, serif;
-      font-style: italic;
+      font-style: normal;
+      font-weight: 400;
       font-size: 22px;
-      letter-spacing: -0.01em;
+      letter-spacing: -0.005em;
       line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--ink);
+    }
+    .wordmark-text .wm-dot {
+      width: 5px;
+      height: 5px;
+      background: var(--gold);
+      border-radius: 1px;
+      flex-shrink: 0;
+      transform: translateY(1px);
     }
     .nav-links {
       display: flex;
@@ -733,13 +746,14 @@
 </head>
 <body>
 
-<!-- Logomark: editor's margin-mark -->
+<!-- Logomark: Field Guide 'q' mark -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
-    <symbol id="margin-mark" viewBox="0 0 32 32">
-      <line x1="6" y1="4" x2="6" y2="28" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
-      <circle cx="6" cy="7" r="1.6" fill="currentColor" />
-      <text x="11" y="23" font-family="Lastik, Georgia, serif" font-style="italic" font-size="18" fill="currentColor" font-weight="400">m</text>
+    <symbol id="margin-mark" viewBox="0 0 32 40">
+      <g fill="none" stroke="#C49A45" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12.5" cy="12.5" r="10" />
+        <path d="M 22.5 12.5 L 22.5 33 Q 22.5 37 26.5 37" />
+      </g>
     </symbol>
   </defs>
 </svg>
@@ -747,9 +761,9 @@
 <!-- ═══════════ NAV ═══════════ -->
 <nav class="nav" data-screen-label="Nav">
   <div class="container nav-inner">
-    <a href="#" class="wordmark" aria-label="The Margin">
+    <a href="#" class="wordmark" aria-label="Field Guide">
       <svg aria-hidden="true"><use href="#margin-mark"></use></svg>
-      <span class="wordmark-text">the margin</span>
+      <span class="wordmark-text"><span>Field</span><span class="wm-dot" aria-hidden="true"></span><span>Guide</span></span>
     </a>
     <div class="nav-links">
       <a href="#latest" class="nav-link">Latest</a>
@@ -766,7 +780,7 @@
     <div class="hero-grid">
       <div>
         <div class="hero-eyebrow">A weekend newsletter from Melbourne's inner west</div>
-        <h1 class="hero-title">Weekends, <em>found in the margins.</em></h1>
+        <h1 class="hero-title">Your weekly field guide, <em>from the inner west.</em></h1>
         <p class="hero-dek">
           One Saturday morning, one carefully chosen weekend. A botanic garden made for slow mornings, a burger that doesn't ask you to compromise, a printmaking workshop the kids will remember. Curated, never exhaustive.
         </p>
@@ -914,9 +928,9 @@
 
     <div class="about-spread">
       <div class="about-content">
-        <h3>We started The Margin because we kept being recommended things that were either for the children or for us, and almost never for both of us together.</h3>
+        <h3>We started Field Guide because we kept being recommended things that were either for the children or for us, and almost never for both of us together.</h3>
         <p>
-          The Margin is a weekend newsletter for parents in their mid-thirties living in Melbourne's inner west. One Saturday morning, one carefully chosen weekend — a botanic garden made for slow mornings, a workshop the kids will remember, a coffee good enough to justify the queue.
+          Field Guide is a weekend newsletter for parents in their mid-thirties living in Melbourne's inner west. One Saturday morning, one carefully chosen weekend — a botanic garden made for slow mornings, a workshop the kids will remember, a coffee good enough to justify the queue.
         </p>
         <p>
           We don't list fifty things. We list the few that actually worked. Curated, never exhaustive — the small, honest list of things worth keeping.
@@ -927,7 +941,6 @@
         <div class="about-margin-label">The colophon</div>
         <ul class="about-margin-list">
           <li><span class="k">Founded</span><span class="v">April 2026, Melbourne</span></li>
-          <li><span class="k">Editor</span><span class="v">Elsie Whittaker</span></li>
           <li><span class="k">Schedule</span><span class="v">Saturday, 7.00 am</span></li>
           <li><span class="k">Set in</span><span class="v">Lastik &amp; Haskøy</span></li>
           <li><span class="k">Read by</span><span class="v">2,400 parents</span></li>
@@ -939,7 +952,7 @@
 
 <!-- ═══════════ FINAL CTA ═══════════ -->
 <section class="final-cta" id="subscribe" data-screen-label="Subscribe">
-  <svg class="final-cta-mark" aria-hidden="true" viewBox="0 0 32 32">
+  <svg class="final-cta-mark" aria-hidden="true" viewBox="0 0 32 40">
     <use href="#margin-mark"></use>
   </svg>
   <div class="container">
@@ -965,7 +978,7 @@
       <div class="footer-about">
         <a href="#" class="wordmark">
           <svg aria-hidden="true"><use href="#margin-mark"></use></svg>
-          <span class="wordmark-text">the margin</span>
+          <span class="wordmark-text"><span>Field</span><span class="wm-dot" aria-hidden="true"></span><span>Guide</span></span>
         </a>
         <p>
           A weekend newsletter for parents in their mid-thirties living in Melbourne's inner west. Curated, never exhaustive.
@@ -985,13 +998,13 @@
       </div>
       <div>
         <h4>Contact</h4>
-        <a href="mailto:hello@themargin.au">hello@themargin.au</a>
-        <a href="mailto:tips@themargin.au">Submit a tip</a>
+        <a href="mailto:hello@fieldguide.au">hello@fieldguide.au</a>
+        <a href="mailto:tips@fieldguide.au">Submit a tip</a>
         <a href="#">Press</a>
       </div>
     </div>
     <div class="container footer-meta" style="padding: 0;">
-      <span>© 2026 The Margin · Melbourne</span>
+      <span>© 2026 Field Guide · Melbourne</span>
       <span>Set in Lastik &amp; Switzer</span>
     </div>
   </div>
