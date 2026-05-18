@@ -1,0 +1,9 @@
+worker.js
+wrangler.jsonc
+.assetsignore
+.gitignore
+.dev.vars*
+.env*
+README.md
+.git/
+.wrangler/
