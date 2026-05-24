@@ -45,7 +45,7 @@ async function handleSubscribe(request, env) {
         email,
         reactivate_existing: true,
         send_welcome_email: true,
-        utm_source: "fieldguide.au",
+        utm_source: "fieldnotes.au",
         utm_medium: "organic",
       }),
     },

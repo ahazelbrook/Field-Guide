@@ -1,9 +1,125 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-AU">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Field Guide — A weekend newsletter from Melbourne's inner west</title>
+  <title>Field Notes — Things to Do in Melbourne This Weekend | Family Activities Inner West</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Field Notes is Melbourne's free Saturday morning newsletter for inner-west families. The best things to do with kids in Melbourne this weekend — botanic gardens, local markets, family events, and hidden gems across Williamstown, Altona, Footscray, Newport, and Yarraville. Curated, never exhaustive." />
+  <meta name="keywords" content="things to do Melbourne, Melbourne with kids, family activities Melbourne, what's on Melbourne this weekend, Melbourne inner west, things to do with kids Melbourne, Melbourne weekend guide, Melbourne parents, Melbourne family newsletter, Williamstown activities, Footscray things to do, Newport Melbourne, Yarraville activities, Altona family, Melbourne botanic gardens, kids activities Melbourne" />
+  <link rel="canonical" href="https://fieldnotes.au/" />
+
+  <!-- Geographic targeting -->
+  <meta name="geo.region" content="AU-VIC" />
+  <meta name="geo.placename" content="Melbourne, Victoria, Australia" />
+  <meta name="ICBM" content="-37.8136, 144.9631" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Field Notes" />
+  <meta property="og:title" content="Field Notes — Melbourne's Weekend Guide for Families" />
+  <meta property="og:description" content="Melbourne's free Saturday morning newsletter for inner-west families. The best things to do with kids this weekend — curated, never exhaustive." />
+  <meta property="og:url" content="https://fieldnotes.au/" />
+  <meta property="og:locale" content="en_AU" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Field Notes — Melbourne Weekend Guide" />
+  <meta name="twitter:description" content="The best things to do with kids in Melbourne's inner west. Free, every Saturday morning." />
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://fieldnotes.au/#website",
+        "name": "Field Notes",
+        "description": "Melbourne's Saturday morning newsletter for inner-west families",
+        "url": "https://fieldnotes.au",
+        "inLanguage": "en-AU",
+        "publisher": { "@id": "https://fieldnotes.au/#organization" }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://fieldnotes.au/#organization",
+        "name": "Field Notes",
+        "url": "https://fieldnotes.au",
+        "email": "hello@fieldnotes.au",
+        "description": "A curated weekend newsletter for parents in Melbourne's inner west",
+        "areaServed": {
+          "@type": "City",
+          "name": "Melbourne",
+          "sameAs": "https://www.wikidata.org/wiki/Q3141"
+        },
+        "knowsAbout": [
+          "things to do with kids in Melbourne",
+          "Melbourne family activities",
+          "Melbourne inner west",
+          "Melbourne weekend guide"
+        ]
+      },
+      {
+        "@type": "Blog",
+        "@id": "https://fieldnotes.au/#archive",
+        "name": "Field Notes Archive",
+        "description": "Every issue of Field Notes — Melbourne's weekly family weekend guide",
+        "url": "https://fieldnotes.au/#archive",
+        "isPartOf": { "@id": "https://fieldnotes.au/#website" },
+        "blogPost": [
+          {
+            "@type": "BlogPosting",
+            "headline": "Autumn at Cherry Lake — Altona, Bezirk & the REB Design Market",
+            "description": "A former wetland in Altona that the birds have quietly repossessed, a seaside café, and a design market under the dome of the Royal Exhibition Building.",
+            "datePublished": "2026-05-23",
+            "url": "https://fieldnotes.au/field-notes-issue-05.html",
+            "keywords": ["Cherry Lake Altona", "Royal Exhibition Building", "Melbourne weekend", "things to do Melbourne", "family activities Melbourne"],
+            "isPartOf": { "@id": "https://fieldnotes.au/#archive" }
+          },
+          {
+            "@type": "BlogPosting",
+            "headline": "A Sunday for Someone — Scienceworks & Spotswood for Mother's Day",
+            "description": "A science museum lit by a full-scale moon, a Spotswood café worth booking, and a fundraiser run around the Tan. Melbourne Mother's Day weekend.",
+            "datePublished": "2026-05-09",
+            "url": "https://fieldnotes.au/field-notes-issue-04.html",
+            "keywords": ["Scienceworks Melbourne", "Spotswood", "Mother's Day Melbourne", "things to do Melbourne", "kids museum Melbourne"],
+            "isPartOf": { "@id": "https://fieldnotes.au/#archive" }
+          },
+          {
+            "@type": "BlogPosting",
+            "headline": "The Forest in Newport — Newport Lakes & Yarraville",
+            "description": "A reclaimed quarry that feels like the country, a corner café in Yarraville, and In Focus photographs from across the inner west.",
+            "datePublished": "2026-05-02",
+            "url": "https://fieldnotes.au/field-notes-issue-03.html",
+            "keywords": ["Newport Lakes", "Yarraville things to do", "inner west Melbourne", "Melbourne parks kids", "family activities Melbourne"],
+            "isPartOf": { "@id": "https://fieldnotes.au/#archive" }
+          },
+          {
+            "@type": "BlogPosting",
+            "headline": "A Quiet ANZAC Morning — Footscray Park & the Maribyrnong",
+            "description": "Where to mark ANZAC Day with small children in Melbourne — Footscray Park, a heritage walk along the Maribyrnong, and forty-two photographs across the inner west.",
+            "datePublished": "2026-04-25",
+            "url": "https://fieldnotes.au/field-notes-issue-02.html",
+            "keywords": ["Footscray Park", "Maribyrnong river walk", "ANZAC Day Melbourne", "Melbourne with kids", "Footscray things to do"],
+            "isPartOf": { "@id": "https://fieldnotes.au/#archive" }
+          },
+          {
+            "@type": "BlogPosting",
+            "headline": "By the Water, Slowly — Williamstown Botanic Gardens & Foreshore",
+            "description": "Williamstown Botanic Gardens at dawn, an unhurried bay-side coffee, and a craft market on the foreshore. Melbourne's inner west at its quietest.",
+            "datePublished": "2026-04-18",
+            "url": "https://fieldnotes.au/field-notes-issue-01.html",
+            "keywords": ["Williamstown Botanic Gardens", "Williamstown Melbourne", "Melbourne bayside", "things to do with kids Melbourne", "Melbourne weekend"],
+            "isPartOf": { "@id": "https://fieldnotes.au/#archive" }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
   <link rel="stylesheet" href="assets/colors_and_type.css" />
   <script src="image-slot.js"></script>
   <style>
@@ -766,7 +882,7 @@
 </head>
 <body>
 
-<!-- Logomark: Field Guide 'q' mark -->
+<!-- Logomark: Field Notes 'q' mark -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <symbol id="margin-mark" viewBox="0 0 32 40">
@@ -781,7 +897,7 @@
 <!-- ═══════════ NAV ═══════════ -->
 <nav class="nav" data-screen-label="Nav">
   <div class="container nav-inner">
-    <a href="#" class="wordmark" aria-label="Field Guide">
+    <a href="#" class="wordmark" aria-label="Field Notes">
       <svg aria-hidden="true"><use href="#margin-mark"></use></svg>
       <span class="wordmark-text"><span>Field</span><span class="wm-dot" aria-hidden="true"></span><span>Guide</span></span>
     </a>
@@ -800,7 +916,7 @@
     <div class="hero-grid">
       <div>
         <div class="hero-eyebrow">A weekend newsletter from Melbourne's inner west</div>
-        <h1 class="hero-title">Your weekly field guide, <em>from the inner west.</em></h1>
+        <h1 class="hero-title">Your weekly field notes, <em>from the inner west.</em></h1>
         <p class="hero-dek">
           One Saturday morning, one carefully chosen weekend. A botanic garden made for slow mornings, a burger that doesn't ask you to compromise, a printmaking workshop the kids will remember. Curated, never exhaustive.
         </p>
@@ -830,7 +946,7 @@
           <li><span class="n">ii.</span><span>Bezirk café, Altona Beach</span></li>
           <li><span class="n">iii.</span><span>Design market, Royal Exhibition Building</span></li>
         </ul>
-        <a href="Field Guide - Issue 05.html" class="hero-card-link">Read this issue</a>
+        <a href="Field Notes - Issue 05.html" class="hero-card-link">Read this issue</a>
       </aside>
     </div>
   </div>
@@ -868,7 +984,7 @@
         <p class="latest-dek">
           This week: a former wetland in Altona that the birds have quietly repossessed, a seaside café at the end of the same road, and a design market under the dome of the Royal Exhibition Building.
         </p>
-        <a href="Field Guide - Issue 05.html" class="latest-read">Read this issue</a>
+        <a href="Field Notes - Issue 05.html" class="latest-read">Read this issue</a>
       </div>
     </article>
   </div>
@@ -887,7 +1003,7 @@
 
     <div class="archive-grid">
       <!-- Issue 05 (current) -->
-      <a href="Field Guide - Issue 05.html" class="issue-card">
+      <a href="Field Notes - Issue 05.html" class="issue-card">
         <div class="issue-tile issue-tile--oatmeal">
           <span class="issue-tile-num">05</span>
           <span class="issue-tile-suburb">Altona · Carlton</span>
@@ -899,7 +1015,7 @@
       </a>
 
       <!-- Issue 04 -->
-      <a href="Field Guide - Issue 04.html" class="issue-card">
+      <a href="Field Notes - Issue 04.html" class="issue-card">
         <div class="issue-tile issue-tile--ink">
           <span class="issue-tile-num">04</span>
           <span class="issue-tile-suburb">Spotswood · Parkville</span>
@@ -911,7 +1027,7 @@
       </a>
 
       <!-- Issue 03 -->
-      <a href="Field Guide - Issue 03.html" class="issue-card">
+      <a href="Field Notes - Issue 03.html" class="issue-card">
         <div class="issue-tile issue-tile--gold">
           <span class="issue-tile-num">03</span>
           <span class="issue-tile-suburb">Newport · Yarraville</span>
@@ -923,7 +1039,7 @@
       </a>
 
       <!-- Issue 02 -->
-      <a href="Field Guide - Issue 02.html" class="issue-card">
+      <a href="Field Notes - Issue 02.html" class="issue-card">
         <div class="issue-tile issue-tile--paper">
           <span class="issue-tile-num">02</span>
           <span class="issue-tile-suburb">Footscray · Maribyrnong</span>
@@ -935,7 +1051,7 @@
       </a>
 
       <!-- Issue 01 -->
-      <a href="Field Guide - Issue 01.html" class="issue-card">
+      <a href="Field Notes - Issue 01.html" class="issue-card">
         <div class="issue-tile issue-tile--ink">
           <span class="issue-tile-num">01</span>
           <span class="issue-tile-suburb">Williamstown · Inner West</span>
@@ -961,12 +1077,12 @@
 
     <div class="about-spread">
       <div class="about-content">
-        <h3>We started Field Guide because we kept being recommended things that were either for the children or for us, and almost never for both of us together.</h3>
+        <h3>We started Field Notes because we kept being recommended things that were either for the children or for us, and almost never for both of us together.</h3>
         <p>
-          Field Guide is a weekend newsletter for parents in their mid-thirties living in Melbourne's inner west. One Saturday morning, one carefully chosen weekend — a botanic garden made for slow mornings, a workshop the kids will remember, a coffee good enough to justify the queue.
+          Field Notes is a free Saturday morning newsletter for parents in Melbourne's inner west. One carefully chosen weekend — a botanic garden made for slow mornings, a workshop the kids will actually remember, a coffee good enough to justify the queue. We cover Williamstown, Altona, Footscray, Newport, Yarraville, Spotswood, and wherever the week takes us across Melbourne's west.
         </p>
         <p>
-          We don't list fifty things. We list the few that actually worked. Curated, never exhaustive — the small, honest list of things worth keeping.
+          We don't list fifty things to do with kids in Melbourne. We list the few that actually worked. Curated, never exhaustive — the small, honest guide to the best of Melbourne's inner west, sent quietly each Saturday before the children wake up.
         </p>
       </div>
 
@@ -1032,13 +1148,13 @@
       </div>
       <div>
         <h4>Contact</h4>
-        <a href="mailto:hello@fieldguide.au">hello@fieldguide.au</a>
-        <a href="mailto:tips@fieldguide.au">Submit a tip</a>
+        <a href="mailto:hello@fieldnotes.au">hello@fieldnotes.au</a>
+        <a href="mailto:tips@fieldnotes.au">Submit a tip</a>
         <a href="#">Press</a>
       </div>
     </div>
     <div class="container footer-meta" style="padding: 0;">
-      <span>© 2026 Field Guide · Melbourne</span>
+      <span>© 2026 Field Notes · Melbourne</span>
       <span>Set in Lastik &amp; Switzer</span>
     </div>
   </div>
