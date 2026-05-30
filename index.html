@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Field Guide — A weekend newsletter from Melbourne's inner west</title>
   <link rel="stylesheet" href="assets/colors_and_type.css" />
-  <script src="image-slot.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; scroll-behavior: smooth; }
@@ -353,17 +352,7 @@
 
     /* ─────── LATEST (featured) ─────── */
     .latest-card {
-      display: grid;
-      grid-template-columns: 1.3fr 1fr;
-      gap: 56px;
-      align-items: center;
-    }
-    .latest-image image-slot {
-      display: block;
-      width: 100%;
-      aspect-ratio: 4 / 3;
-      background: var(--paper-deep);
-      border: 1px solid var(--rule);
+      max-width: 640px;
     }
     .latest-meta {
       display: flex;
@@ -726,7 +715,6 @@
       .signup-btn { width: 100%; }
       .section { padding: 56px 0; }
       .section-head { flex-direction: column; align-items: flex-start; margin-bottom: 32px; }
-      .latest-card { grid-template-columns: 1fr; gap: 28px; }
       .archive-grid { grid-template-columns: 1fr; gap: 32px; }
       .about-spread { grid-template-columns: 1fr; gap: 24px; }
       .about-margin::before { display: none; }
@@ -828,13 +816,6 @@
     </div>
 
     <article class="latest-card">
-      <figure class="latest-image" style="margin:0;">
-        <image-slot
-          id="latest-issue-image"
-          placeholder="Drop the cover photo for this week's issue."
-          shape="rect"
-        ></image-slot>
-      </figure>
       <div>
         <div class="latest-meta">
           <span class="dot"></span>
