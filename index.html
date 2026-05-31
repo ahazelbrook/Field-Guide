@@ -652,6 +652,25 @@
       transition: background 200ms, color 200ms;
     }
     .final-cta-form button:hover { background: var(--paper); }
+    .final-cta-form button:disabled { opacity: 0.6; cursor: wait; }
+    .final-cta-status {
+      min-height: 18px;
+      margin: 12px 0 0;
+      font-size: 13px;
+      color: rgba(251, 249, 244, 0.6);
+      max-width: 500px;
+    }
+    .final-cta-status[data-state="ok"] { color: var(--gold); }
+    .final-cta-status[data-state="error"] { color: #E89B96; }
+    .signup-status {
+      min-height: 18px;
+      margin: 12px 0 0;
+      font-size: 13px;
+      color: rgba(251, 249, 244, 0.6);
+      max-width: 500px;
+    }
+    .signup-status[data-state="ok"] { color: var(--gold); }
+    .signup-status[data-state="error"] { color: #E89B96; }
     .final-cta-fineprint {
       font-size: 13px;
       color: rgba(251, 249, 244, 0.45);
@@ -773,10 +792,11 @@
         <p class="hero-dek">
           One Saturday morning, one carefully chosen weekend. A wetland the birds quietly repossessed, a corner café worth the early start, a winter festival sized for a pram. Curated, never exhaustive.
         </p>
-        <form class="signup" onsubmit="event.preventDefault();">
-          <input type="email" placeholder="your.name@email.com" aria-label="Email address" />
+        <form class="signup" data-subscribe>
+          <input type="email" name="email" placeholder="your.name@email.com" aria-label="Email address" required />
           <button class="signup-btn" type="submit">Subscribe</button>
         </form>
+        <p class="signup-status" data-status aria-live="polite"></p>
         <div class="hero-meta">
           <div class="avatars">
             <span class="avatar" aria-hidden="true"></span>
@@ -968,10 +988,11 @@
       <p class="final-cta-dek">
         No notifications, no algorithm, no list of fifty things. Just one carefully chosen weekend in Melbourne's inner west, sent quietly each Saturday before the children wake up.
       </p>
-      <form class="final-cta-form" onsubmit="event.preventDefault();">
-        <input type="email" placeholder="your.name@email.com" aria-label="Email address" />
+      <form class="final-cta-form" data-subscribe>
+        <input type="email" name="email" placeholder="your.name@email.com" aria-label="Email address" required />
         <button type="submit">Subscribe</button>
       </form>
+      <p class="final-cta-status" data-status aria-live="polite"></p>
       <p class="final-cta-fineprint">Free. Unsubscribe in one click. We won't share your address with anyone.</p>
     </div>
   </div>
@@ -1021,6 +1042,46 @@
     </div>
   </div>
 </footer>
+
+<script>
+  document.querySelectorAll('form[data-subscribe]').forEach((form) => {
+    const status = form.nextElementSibling && form.nextElementSibling.matches('[data-status]')
+      ? form.nextElementSibling : null;
+    const setStatus = (msg, state) => {
+      if (!status) return;
+      status.textContent = msg;
+      if (state) status.setAttribute('data-state', state);
+      else status.removeAttribute('data-state');
+    };
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const input = form.querySelector('input[type="email"]');
+      const button = form.querySelector('button');
+      const email = (input.value || '').trim();
+      if (!email) return;
+      button.disabled = true;
+      setStatus('Subscribing…', null);
+      try {
+        const res = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (res.ok) {
+          setStatus("You're in. Check your inbox to confirm.", 'ok');
+          form.reset();
+        } else {
+          setStatus(data.error || 'Something went wrong. Please try again.', 'error');
+        }
+      } catch {
+        setStatus('Network error. Please try again.', 'error');
+      } finally {
+        button.disabled = false;
+      }
+    });
+  });
+</script>
 
 </body>
 </html>
