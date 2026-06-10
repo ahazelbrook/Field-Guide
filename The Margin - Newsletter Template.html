@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Field Guide — Issue No. 04</title>
   <link rel="stylesheet" href="assets/colors_and_type.css" />
-  <script src="image-slot.js"></script>
   <style>
     /* ─────── HASKOY (replaces Inter for body & UI) ─────── */
     @font-face {
@@ -286,14 +285,6 @@
       margin: 0 0 16px;
       grid-column: 1 / -1; /* full bleed of the spread */
     }
-    .figure image-slot {
-      display: block;
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      background: var(--paper-deep);
-      border: 1px solid var(--rule);
-    }
-    .figure--small image-slot { aspect-ratio: 4 / 3; }
     .figcaption {
       font-family: 'Lastik', Georgia, serif;
       font-style: italic;
@@ -725,20 +716,6 @@
       </aside>
     </section>
 
-    <!-- ═══════════ HERO FIGURE ═══════════ -->
-    <section class="spread">
-      <figure class="figure">
-        <image-slot
-          id="hero-image"
-          placeholder="Drop a Saturday-morning photograph — wide, calm, natural light."
-          shape="rect"
-        ></image-slot>
-        <figcaption class="figcaption">
-          Williamstown, just after eight. The figs hadn't quite started dropping yet. <span style="color: var(--stone);">— Photograph for Field Guide.</span>
-        </figcaption>
-      </figure>
-    </section>
-
     <!-- ═══════════ ARTICLE I ═══════════ -->
     <section class="spread" data-screen-label="Article 1" data-comment-anchor="ad28fa40da-article">
       <article class="content">
@@ -912,7 +889,7 @@
     <div>
       <h4>About</h4>
       <p>
-        Field Guide is a weekend newsletter for parents in their mid-thirties living in Melbourne's inner west. Curated, never exhaustive.
+        Field Guide is a weekend newsletter for parents living in Melbourne's inner west. Curated, never exhaustive.
       </p>
     </div>
     <div>

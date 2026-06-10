@@ -277,14 +277,6 @@
       margin: 0 0 16px;
       grid-column: 1 / -1; /* full bleed of the spread */
     }
-    .figure image-slot {
-      display: block;
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      background: var(--paper-deep);
-      border: 1px solid var(--rule);
-    }
-    .figure--small image-slot { aspect-ratio: 4 / 3; }
 
     /* ─────── INNER-WEST MAP (replaces hero figure on issue pages) ─────── */
     .figure-map-wrap {
